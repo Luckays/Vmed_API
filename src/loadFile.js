@@ -1,11 +1,13 @@
+// function of loadFile: separate files dependent on extension, start columns
 import readline from "readline";
 import path from "path";
 import fs from "fs"
+//set number of columns
 let r_all = 25;
 let r_txt = 12;
 let allLines = [];
 let txtLines = [];
-import rows from "./rows";
+import columns from "./columns";
 
 export default (filename) => {
     const readInterface = readline.createInterface({
@@ -21,7 +23,7 @@ console.log(filename);
 
             readInterface.on('line', (line) => {
                 let split = line.split(' ').filter(item => item !== '');
-                allLines.push(rows(split, r_all));
+                allLines.push(columns(split, r_all));
             });
             break;
 
@@ -33,7 +35,7 @@ console.log(filename);
                     return;
                 }
                 let split = line.split(' ').filter(item => item !== '');
-                txtLines.push(rows(split, r_txt));
+                txtLines.push(columns(split, r_txt));
             });
             break;
     }

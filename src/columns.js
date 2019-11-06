@@ -1,4 +1,4 @@
-// function of rows: throw values to definited +number+ of rows and return split line
+// function of rows: throw values to definited +number+ of columns and return split line
 let parsedLines = [];
 export default (split,number) => {
     let date = new Date();

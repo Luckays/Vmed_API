@@ -1,4 +1,4 @@
-// function of openFolder
+// function of openFolder: read filename from folder, save filename, start loadFile
 import fs from 'fs'
 import loadFile from "./loadFile";
 export default (foldername)=>  {

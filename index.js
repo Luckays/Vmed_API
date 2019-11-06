@@ -1,4 +1,4 @@
-//function of index set name of folder, excerpt data
+//function of index set name of folder, excerpt data, start openFolder
 import express from 'express'
 import path from 'path'
 import openFolder from "./src/openFolder";
