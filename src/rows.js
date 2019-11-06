@@ -1,7 +1,6 @@
+// function of rows: throw values to definited +number+ of rows and return split line
 let parsedLines = [];
 export default (split,number) => {
-
-
     let date = new Date();
     date.setFullYear(split[0], (split[1] - 1), split[2]);
     date.setHours(split[3], split[4], split[5]);
@@ -149,7 +148,7 @@ export default (split,number) => {
 
 
     }
-console.log(parsedLines)
+//console.log(parsedLines)
 return parsedLines
 
 

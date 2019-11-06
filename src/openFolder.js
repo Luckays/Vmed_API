@@ -1,12 +1,12 @@
+// function of openFolder
 import fs from 'fs'
-import {parseFile} from "./parseFile";
 import loadFile from "./loadFile";
 export default (foldername)=>  {
     var filename = fs.readdirSync(foldername);
-
+    let a;
     for (let i = 0; i < filename.length; i++) {
-        let a = loadFile(filename[i]);
-
+        a = loadFile(filename[i]);
+    }
+return a;
     }
 
-}

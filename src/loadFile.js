@@ -37,5 +37,5 @@ console.log(filename);
             });
             break;
     }
-    return filename//[allLines,txtLines];
+    return [allLines,txtLines];
 }
