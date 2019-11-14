@@ -31,7 +31,7 @@ console.log(filename);
             let i = 0;
             readInterface.on('line', (line) => {
                 i++;
-                if (i===1){
+                if (i===1){ /// if split[0]==='-1'
                     return;
                 }
                 let split = line.split(' ').filter(item => item !== '');

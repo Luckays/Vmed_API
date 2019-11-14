@@ -1,5 +1,6 @@
 // function of rows: throw values to definited +number+ of columns and return split line
 let parsedLines = [];
+import connection from "./database/connection";
 export default (split,number) => {
     let date = new Date();
     date.setFullYear(split[0], (split[1] - 1), split[2]);
