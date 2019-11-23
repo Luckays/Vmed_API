@@ -2,28 +2,33 @@
 import readline from "readline";
 import path from "path";
 import fs from "fs"
+let A = [];
 //set number of columns
 let r_all = 25;
-let r_txt = 12;
-let allLines = [];
-let txtLines = [];
+let r_txt = 15;
 import columns from "./columns";
+import createConnection from "./database/connection";
+const connection = createConnection()
 
 export default (filename) => {
+    return new Promise((resolve, reject) => {
     const readInterface = readline.createInterface({
         input: fs.createReadStream(path.join(__dirname, '../data/', filename)),
         output: process.stdout,
         console: false
+
     });
-console.log(filename);
-   const extension = path.extname(filename).split('.')[1].toLocaleLowerCase();
+    readInterface.clear;
+
+    console.log(filename);
+    const extension = path.extname(filename).split('.')[1].toLocaleLowerCase();
 
     switch (extension) {
-       case 'all':
+        case 'all':
 
             readInterface.on('line', (line) => {
                 let split = line.split(' ').filter(item => item !== '');
-                allLines.push(columns(split, r_all));
+                //allLines.push(columns(split, r_all));
             });
             break;
 
@@ -31,13 +36,13 @@ console.log(filename);
             let i = 0;
             readInterface.on('line', (line) => {
                 i++;
-                if (i===1){ /// if split[0]==='-1'
+                if (i === 1) { /// if split[0]==='-1'
                     return;
                 }
                 let split = line.split(' ').filter(item => item !== '');
-                txtLines.push(columns(split, r_txt));
+                A.push(columns(split, r_txt));
             });
             break;
     }
-    return [allLines,txtLines];
+})
 }
