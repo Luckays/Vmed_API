@@ -19,5 +19,6 @@ export default (split,number) => {
         }
         parsedLine.columns[i - 6] = split[i];
     }
+
 return parsedLine
 }

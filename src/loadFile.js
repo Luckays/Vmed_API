@@ -10,6 +10,7 @@ import columns from "./columns";
 import createConnection from "./database/connection";
 const connection = createConnection()
 
+
 export default (filename) => {
     return new Promise((resolve, reject) => {
     const readInterface = readline.createInterface({
@@ -44,5 +45,8 @@ export default (filename) => {
             });
             break;
     }
+
+
+        readInterface.on('close', () => {resolve(A)})
 })
 }
