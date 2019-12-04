@@ -14,6 +14,8 @@ var toOneArray = function(data,columns) {
 
 
 export default (A) => {
+    console.log([A.date, ...A.columns]);
+    
     let c = getColumns(A)
     c.pop();
     let d = getDates(A)
