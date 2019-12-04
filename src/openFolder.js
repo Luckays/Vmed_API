@@ -13,10 +13,10 @@ export default (foldername)=> {
 
             savetodatabase(A,filename[i])
 
-            })/*.catch((error) => {
+            }).catch((error) => {
                 console.log("error")
 
-           })*/
+           })
         }
         return A
         console.log(filename)
