@@ -11,12 +11,12 @@ export default (foldername)=> {
         for (let i = 0; i < filename.length; i++) {
             loadFile(filename[i]).then((A) => {
 
-            savetodatabase(A)
+            savetodatabase(A,filename[i])
 
             })/*.catch((error) => {
                 console.log("error")
 
-            })*/
+           })*/
         }
         return A
         console.log(filename)

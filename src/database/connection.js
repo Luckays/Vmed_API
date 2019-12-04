@@ -1,5 +1,5 @@
+//connecting to db
 import mysql from 'mysql';
-
 export default ()=> {
         const connection = mysql.createConnection({
             host: 'localhost',

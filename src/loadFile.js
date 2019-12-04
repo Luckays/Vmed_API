@@ -2,10 +2,13 @@
 import readline from "readline";
 import path from "path";
 import fs from "fs"
-let A = [];
+
 //set number of columns
-let r_all = 25;
+let r_all = 15;
 let r_txt = 15;
+let r_mol = 15;
+let r_bud = 15;
+let r_vlh = 15;
 import columns from "./columns";
 import createConnection from "./database/connection";
 const connection = createConnection()
@@ -23,25 +26,51 @@ export default (filename) => {
 
     console.log(filename);
     const extension = path.extname(filename).split('.')[1].toLocaleLowerCase();
-
+        let A = [];
+        let i = 0;
     switch (extension) {
+
         case 'all':
 
             readInterface.on('line', (line) => {
                 let split = line.split(' ').filter(item => item !== '');
-                //allLines.push(columns(split, r_all));
+                A.push(columns(split, r_all));
             });
             break;
 
         case 'txt':
-            let i = 0;
+
             readInterface.on('line', (line) => {
                 i++;
-                if (i === 1) { /// if split[0]==='-1'
+                if (i === 1) {
                     return;
                 }
                 let split = line.split(' ').filter(item => item !== '');
                 A.push(columns(split, r_txt));
+            });
+            break;
+
+        case 'mol':
+
+            readInterface.on('line', (line) => {
+                let split = line.split(' ').filter(item => item !== '');
+                A.push(columns(split, r_mol));
+            });
+            break;
+
+        case 'bud':
+
+            readInterface.on('line', (line) => {
+                let split = line.split(' ').filter(item => item !== '');
+                A.push(columns(split, r_bud));
+            });
+            break;
+
+        case 'vlh':
+
+            readInterface.on('line', (line) => {
+                let split = line.split(' ').filter(item => item !== '');
+                A.push(columns(split, r_vlh));
             });
             break;
     }
