@@ -10,7 +10,7 @@ export default ()=> {
 
         connection.connect((err) => {
             if (!err) {
-                console.log("Connected");
+               // console.log("Connected");
             } else {
                 console.log("Connection Failed");
             }

@@ -2,19 +2,36 @@
 import readline from "readline";
 import path from "path";
 import fs from "fs"
-
 //set number of columns
-let r_all = 15;
+let r_all = 17;
 let r_txt = 15;
 let r_mol = 15;
 let r_bud = 15;
 let r_vlh = 15;
 import columns from "./columns";
 import createConnection from "./database/connection";
-const connection = createConnection()
 
+let rowexists = (mystring) => {
+
+    let connection = createConnection();
+    return new Promise(resolve => {
+        let sql = "SELECT * FROM ?? WHERE ?? = ?";
+        connection.query(sql, ['filename', 'name', mystring], function(error, result){
+            if(result[0] === undefined){
+
+                result = false;
+            }
+            resolve(result)
+            connection.end()
+        });
+
+    });
+};
 
 export default (filename) => {
+
+
+
     return new Promise((resolve, reject) => {
     const readInterface = readline.createInterface({
         input: fs.createReadStream(path.join(__dirname, '../data/', filename)),
@@ -24,10 +41,10 @@ export default (filename) => {
     });
     readInterface.clear;
 
-    console.log(filename);
     const extension = path.extname(filename).split('.')[1].toLocaleLowerCase();
         let A = [];
         let i = 0;
+
     switch (extension) {
 
         case 'all':
@@ -59,11 +76,10 @@ export default (filename) => {
             break;
 
         case 'bud':
-
             readInterface.on('line', (line) => {
                 let split = line.split(' ').filter(item => item !== '');
                 A.push(columns(split, r_bud));
-            });
+                });
             break;
 
         case 'vlh':
@@ -75,7 +91,6 @@ export default (filename) => {
             break;
     }
 
-
         readInterface.on('close', () => {resolve(A)})
-})
+    })
 }

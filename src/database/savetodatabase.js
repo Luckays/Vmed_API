@@ -1,7 +1,7 @@
 //saving to db
 import createConnection from "./connection";
 import path from "path";
-let connection = createConnection();
+
 
 const getDates = fields =>fields.map(field => field.date)
 const getColumns = fields =>fields.map(field => field.columns)
@@ -17,57 +17,76 @@ for(let i = 0;i<A.length;i++){
     return todb
 }
 
-export default (A,filename) => {
+export default (A,index,filename,oriniginalfileresult,fileSizeInBytes) => {
 
-
-    var sqlfilename = "INSERT INTO filename VALUES ('"+filename+"')";
+if (oriniginalfileresult===false) {
+    let connection = createConnection();
+    var sqlfilename = "INSERT INTO filename VALUES ('" + index + "','" + filename + "','" + fileSizeInBytes + "')";
     connection.query(sqlfilename);
-    let c = getColumns(A)
-    let d = getDates(A)
-    let values =  toOneArray(A)
-    const extension = path.extname(filename).split('.')[1].toLocaleLowerCase();
-    switch(extension) {
-        case 'txt':
-            var sql = "INSERT INTO txt_table VALUES ?";
-                connection.query(sql, [values],function (err, result) {
+    connection.end();
+}
+        let c = getColumns(A)
+        let d = getDates(A)
+        let values = toOneArray(A)
+
+
+
+
+
+
+
+        const extension = path.extname(filename).split('.')[1].toLocaleLowerCase();
+        switch (extension) {
+            case 'txt':
+                var sql = "INSERT IGNORE INTO txt_table VALUES ?";
+               let connection1 =  createConnection();
+
+                connection1.query(sql, [values], function (err, result) {
                     if (err) throw err;
                     console.log("Number of records inserted: " + result.affectedRows);
+                    connection1.end();
                 });
-            break;
-        case 'all':
-            var sql = "INSERT INTO all_table VALUES ?";
-            connection.query(sql, [values],function (err, result) {
-                if (err) throw err;
-                console.log("Number of records inserted: " + result.affectedRows);
-            });
-            break;
-        case 'mol':
-            var sql = "INSERT INTO mol_table VALUES ?";
-            connection.query(sql, [values],function (err, result) {
-                if (err) throw err;
-                console.log("Number of records inserted: " + result.affectedRows);
-            });
-            break;
-        case 'bud':
-            var sql = "INSERT INTO bud_table VALUES ?";
-            connection.query(sql, [values],function (err, result) {
-                if (err) throw err;
-                console.log("Number of records inserted: " + result.affectedRows);
-            });
-            break;
+                break;
+            case 'all':
+                let connection2 = createConnection();
+                var sql = "INSERT IGNORE INTO all_table VALUES ?";
+                connection2.query(sql, [values], function (err, result) {
+                    if (err) throw err;
+                    console.log("Number of records inserted: " + result.affectedRows);
+                    connection2.end();
+                });
+                break;
+            case 'mol':
+                let connection3 = createConnection();
+                var sql = "INSERT IGNORE INTO mol_table VALUES ?";
+                connection3.query(sql, [values], function (err, result) {
+                    if (err) throw err;
+                    console.log("Number of records inserted: " + result.affectedRows);
+                    connection3.end();
+                });
+                break;
+            case 'bud':
+                let connection4 = createConnection();
+                var sql = "INSERT IGNORE INTO bud_table VALUES ? ";
+                connection4.query(sql, [values], function (err, result) {
+                    if (err) throw err;
+                    console.log("Number of records inserted: " + result.affectedRows);
+                    connection4.end();
+                });
+                break;
 
 
-        case 'vlh':
-            var sql = "INSERT INTO vlh_table VALUES ?";
-            connection.query(sql, [values],function (err, result) {
-                if (err) throw err;
-                console.log("Number of records inserted: " + result.affectedRows);
-            });
-            break;
+            case 'vlh':
+                let connection5 = createConnection();
+                var sql = "INSERT IGNORE INTO vlh_table VALUES ?";
+                connection5.query(sql, [values], function (err, result) {
+                    if (err) throw err;
+                    console.log("Number of records inserted: " + result.affectedRows);
+                    connection5.end();
+                });
+                break;
 
-    }
-
-
+        }
 
 
 
