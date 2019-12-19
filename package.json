@@ -15,10 +15,16 @@
     "@babel/core": "^7.6.4",
     "@babel/node": "^7.6.3",
     "@babel/preset-env": "^7.6.3",
-    "nodemon": "^1.19.4"
+    "nodemon": "^1.19.4",
+    "prettier": "^1.19.1"
   },
   "scripts": {
     "start": "nodemon --exec babel-node index.js",
     "prod": "pm2 start --interpreter babel-node index.js"
+  },
+  "prettier": {
+    "tabWidth": 4,
+    "singleQuote": true,
+    "semi": true
   }
 }
