@@ -29,7 +29,33 @@ if (oriniginalfileresult===false) {
         let d = getDates(A)
         let values = toOneArray(A)
 
+{
 
+                var path = [foldername, filename[i]];
+                var pathtosize = path.join('/');
+                const stats = fs.statSync(pathtosize);
+                const fileSizeInBytes = stats.size;
+
+
+
+
+                if(!!result === false||result[0].filesize<fileSizeInBytes) {
+
+
+                loadFile(filename[i]).then((A) => {
+
+
+                    savetodatabase(A, i, filename[i], !!result,fileSizeInBytes)
+                    if (result[0].filesize<fileSizeInBytes) {
+                        updatefilesize(fileSizeInBytes, i)
+                    }
+                }).catch((error) => {
+                    console.log("error openFolder")
+
+                })
+
+            }
+            }
 
 
 

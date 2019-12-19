@@ -2,6 +2,7 @@
 import readline from "readline";
 import path from "path";
 import fs from "fs"
+import moment from "moment";
 //set number of columns
 let r_all = 17;
 let r_txt = 15;
@@ -28,10 +29,22 @@ let rowexists = (mystring) => {
     });
 };
 
+const saveToDB = async (table, rows) => {
+    const formattedRows = rows.map(item => {
+        return [ moment(item.date).format('YYYY-MM-DD HH:mm:ss'), ...item.columns ];
+    });
+
+    const connection = createConnection();
+    const sql = `INSERT IGNORE INTO ${table} VALUES ? `;
+    connection.query(sql, [formattedRows], function (err, result) {
+        if (err) throw err;
+        console.log("Number of records inserted: " + result.affectedRows);
+        connection.end();
+        return Promise.resolve(result.affectedRows)
+    });
+};
+
 export default (filename) => {
-
-
-
     return new Promise((resolve, reject) => {
     const readInterface = readline.createInterface({
         input: fs.createReadStream(path.join(__dirname, '../data/', filename)),
@@ -39,19 +52,64 @@ export default (filename) => {
         console: false
 
     });
-    readInterface.clear;
 
     const extension = path.extname(filename).split('.')[1].toLocaleLowerCase();
-        let A = [];
-        let i = 0;
+    let output = [];
+    let i = 0;
+    let table;
 
+    readInterface.on('line', async line => {
+        let split = line.split(' ').filter(item => item !== '');
+
+        switch (extension) {
+            case 'all':
+                output.push(columns(split, r_all));
+                table = 'all_table';
+                break;
+
+            case 'txt':
+                i++;
+                if (i === 1) return;
+                output.push(columns(split, r_txt));
+                table = 'txt_table';
+                break;
+
+            case 'mol':
+                output.push(columns(split, r_mol));
+                table = 'mol_table';
+                break;
+
+            case 'bud':
+                output.push(columns(split, r_bud));
+                table = 'bud_table';
+                break;
+
+            case 'vlh':
+                output.push(columns(split, r_vlh));
+                table = 'vlh_table';
+                break;
+        }
+    });
+
+    readInterface.on('close', async () => {
+        await saveToDB(table, output);
+        // await saveToFilenames(table, filesize)
+        output = [];
+        resolve(true)
+    })
+
+        /*
     switch (extension) {
-
         case 'all':
-
             readInterface.on('line', (line) => {
                 let split = line.split(' ').filter(item => item !== '');
-                A.push(columns(split, r_all));
+                output.push(columns(split, r_all));
+
+                if (output.length >= 500) {
+                    // TODO:
+
+                    output = [];
+                }
             });
             break;
 
@@ -63,7 +121,7 @@ export default (filename) => {
                     return;
                 }
                 let split = line.split(' ').filter(item => item !== '');
-                A.push(columns(split, r_txt));
+                output.push(columns(split, r_txt));
             });
             break;
 
@@ -71,14 +129,14 @@ export default (filename) => {
 
             readInterface.on('line', (line) => {
                 let split = line.split(' ').filter(item => item !== '');
-                A.push(columns(split, r_mol));
+                output.push(columns(split, r_mol));
             });
             break;
 
         case 'bud':
             readInterface.on('line', (line) => {
                 let split = line.split(' ').filter(item => item !== '');
-                A.push(columns(split, r_bud));
+                output.push(columns(split, r_bud));
                 });
             break;
 
@@ -86,11 +144,15 @@ export default (filename) => {
 
             readInterface.on('line', (line) => {
                 let split = line.split(' ').filter(item => item !== '');
-                A.push(columns(split, r_vlh));
+                output.push(columns(split, r_vlh));
             });
             break;
     }
 
-        readInterface.on('close', () => {resolve(A)})
+        readInterface.on('close', () => {
+            // TODO
+            // output
+
+        })*/
     })
 }
