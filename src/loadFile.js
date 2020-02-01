@@ -1,4 +1,5 @@
 // function of loadFile: separate files dependent on extension, start columns
+//function saveToDB saving data to db
 import readline from 'readline';
 import path from 'path';
 import fs from 'fs';
@@ -9,27 +10,17 @@ let r_txt = 15;
 let r_mol = 15;
 let r_bud = 15;
 let r_vlh = 15;
+let r2_all = 17;
 import columns from './columns';
 import createConnection from './database/connection';
 
-let rowexists = mystring => {
-    let connection = createConnection();
-    return new Promise(resolve => {
-        let sql = 'SELECT * FROM ?? WHERE ?? = ?';
-        connection.query(sql, ['filename', 'name', mystring], function(
-            error,
-            result
-        ) {
-            if (result[0] === undefined) {
-                result = false;
-            }
-            resolve(result);
-            connection.end();
-        });
-    });
-};
+
 
 const saveToDB = async (table, rows) => {
+
+
+
+
     const formattedRows = rows.map(item => {
         return [
             moment(item.date).format('YYYY-MM-DD HH:mm:ss'),
@@ -47,11 +38,11 @@ const saveToDB = async (table, rows) => {
     });
 };
 
-export default filename => {
+export default (filename,foldername) => {
     return new Promise((resolve, reject) => {
         const readInterface = readline.createInterface({
             input: fs.createReadStream(
-                path.join(__dirname, '../data/', filename)
+                path.join(__dirname, '../',foldername,'/', filename)
             ),
             output: process.stdout,
             console: false
@@ -65,101 +56,63 @@ export default filename => {
         let i = 0;
         let table;
 
+
+
         readInterface.on('line', async line => {
             let split = line.split(' ').filter(item => item !== '');
+            switch (foldername) {
+                case 'slozka1':
 
-            switch (extension) {
-                case 'all':
-                    output.push(columns(split, r_all));
-                    table = 'all_table';
+                    switch (extension) {
+                        case 'all':
+                            output.push(columns(split, r_all));
+                            table = 'all_table';
+                            break;
+
+                        case 'txt':
+                            i++;
+                            if (i === 1) return;
+                            output.push(columns(split, r_txt));
+                            table = 'txt_table';
+                            break;
+
+                        case 'mol':
+                            output.push(columns(split, r_mol));
+                            table = 'mol_table';
+                            break;
+
+                        case 'bud':
+                            output.push(columns(split, r_bud));
+                            table = 'bud_table';
+                            break;
+
+                        case 'vlh':
+                            output.push(columns(split, r_vlh));
+                            table = 'vlh_table';
+                            break;
+                    }
                     break;
 
-                case 'txt':
-                    i++;
-                    if (i === 1) return;
-                    output.push(columns(split, r_txt));
-                    table = 'txt_table';
-                    break;
+                case 'slozka2':
+                    switch (extension) {
+                        case 'all':
+                            output.push(columns(split, r2_all));
+                            table = 'all_table2';
+                            break;
 
-                case 'mol':
-                    output.push(columns(split, r_mol));
-                    table = 'mol_table';
-                    break;
 
-                case 'bud':
-                    output.push(columns(split, r_bud));
-                    table = 'bud_table';
-                    break;
-
-                case 'vlh':
-                    output.push(columns(split, r_vlh));
-                    table = 'vlh_table';
+                    }
                     break;
             }
         });
 
         readInterface.on('close', async () => {
+
             await saveToDB(table, output);
-            // await saveToFilenames(table, filesize)
             output = [];
             resolve(true);
         });
 
-        /*
-    switch (extension) {
-        case 'all':
-            readInterface.on('line', (line) => {
-                let split = line.split(' ').filter(item => item !== '');
-                output.push(columns(split, r_all));
 
-                if (output.length >= 500) {
-                    // TODO:
-
-                    output = [];
-                }
-            });
-            break;
-
-        case 'txt':
-
-            readInterface.on('line', (line) => {
-                i++;
-                if (i === 1) {
-                    return;
-                }
-                let split = line.split(' ').filter(item => item !== '');
-                output.push(columns(split, r_txt));
-            });
-            break;
-
-        case 'mol':
-
-            readInterface.on('line', (line) => {
-                let split = line.split(' ').filter(item => item !== '');
-                output.push(columns(split, r_mol));
-            });
-            break;
-
-        case 'bud':
-            readInterface.on('line', (line) => {
-                let split = line.split(' ').filter(item => item !== '');
-                output.push(columns(split, r_bud));
-                });
-            break;
-
-        case 'vlh':
-
-            readInterface.on('line', (line) => {
-                let split = line.split(' ').filter(item => item !== '');
-                output.push(columns(split, r_vlh));
-            });
-            break;
-    }
-
-        readInterface.on('close', () => {
-            // TODO
-            // output
-
-        })*/
     });
 };
