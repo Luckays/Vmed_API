@@ -39,15 +39,17 @@ export default () => {
     })
 
     app.post('/columns', (req, res) => {
-        const sql = 'show columns from ' + req.body.tableName;
-        connection.query(sql, [], (err, rows) => {
-            if (err) console.log(err);
+        if (req.body.tableName != '--') {
+            const sql = 'show columns from ' + req.body.tableName;
+            connection.query(sql, [], (err, rows) => {
+                if (err) console.log(err);
 
-            res.set({
-                'Access-Control-Allow-Origin': '*'
-            }).json({
-                data: rows.map(c => c.Field).filter(c => c !== 'datum')
+                res.set({
+                    'Access-Control-Allow-Origin': '*'
+                }).json({
+                    data: rows.map(c => c.Field).filter(c => c !== 'datum')
+                })
             })
-        })
+        }
     })
 }

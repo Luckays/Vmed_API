@@ -19,10 +19,15 @@ export default function createtable() {
         'CREATE TABLE IF NOT EXISTS vlh_table ( datum timestamp PRIMARY KEY NOT NULL,s1 double, s2 double, s3 double,s4 double,s5 double,s6 double, s7 double,s8 double, s9 double)';
     connection.query(sql);
     var sql =
-        'CREATE TABLE IF NOT EXISTS filename (fname VARCHAR(25) PRIMARY KEY,filesize double)';
+        'CREATE TABLE IF NOT EXISTS filename (fname VARCHAR(255) PRIMARY KEY,filesize double)';
     connection.query(sql);
         var sql =
         'CREATE TABLE IF NOT EXISTS all_table2 ( datum timestamp PRIMARY KEY NOT NULL, s1 double, s2 double, s3 double,s4 double,s5 double,s6 double, s7 double,s8 double, s9 double,s10 double,s11 double)';
+    connection.query(sql);
+    var sql =
+        'CREATE TABLE IF NOT EXISTS selectable_tables ( name_table varchar(255)PRIMARY KEY NOT NULL, title varchar (255))';
+    connection.query(sql);
+   var sql = `INSERT IGNORE INTO selectable_tables VALUES ('all_table2', 'Data 1'),('mol_table','Data 2'),('all_table','Data 3'),('bud_table','Data 4'),('txt_table','Data 5'),('vlh_table','Data 6')`;
     connection.query(sql);
     /* var sql= "ALTER TABLE all_table  ADD (s11 double)"
         connection.query(sql);*/
