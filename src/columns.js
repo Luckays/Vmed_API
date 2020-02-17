@@ -3,15 +3,17 @@
 export default (split, number) => {
     const parsedLine = {
         date: new Date(),
+        day: new Date(),
         columns: []
     };
     parsedLine.date.setFullYear(split[0], split[1] - 1, split[2]);
+    parsedLine.day.setFullYear(split[0], split[1] - 1, split[2]);
     parsedLine.date.setHours(split[3], split[4], split[5]);
     parsedLine.date.setMilliseconds(0);
     if (number <= 6 || number > 40) {
         throw Error('Unsupported number of rows ' + number);
     }
-    for (let i = 6; i < number; i++) {
+        for (let i = 6; i < number; i++) {
         if (split[i] === undefined) {
             split[i] = null;
         }

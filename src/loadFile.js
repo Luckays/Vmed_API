@@ -24,6 +24,7 @@ const saveToDB = async (table, rows) => {
     const formattedRows = rows.map(item => {
         return [
             moment(item.date).format('YYYY-MM-DD HH:mm:ss'),
+            moment(item.day).format('L'),
             ...item.columns
         ];
     });

@@ -30,6 +30,82 @@ export default () => {
         })
     })
 
+    app.post('/fce', (req, res) => {
+
+
+        let analysis_type = req.body.group_type;
+        console.log(analysis_type );
+
+          switch (analysis_type) {
+            case 'Průměr':
+               // connection.query('SELECT date_day,avg (??)FROM ?? WHERE datum >=? AND datum<=?', [
+                connection.query('SELECT date_day,avg (??) FROM ?? GROUP BY date_day', [
+                    req.body.column,
+                        req.body.table_name,
+                        moment(req.body.from_date).format('YYYY-MM-DD HH:mm:ss'),
+                        moment(req.body.to_date).format('YYYY-MM-DD HH:mm:ss')
+                    ],
+                    (err, rows, fields) => {
+                        if (!err)
+                            res.set({
+                                'Access-Control-Allow-Origin': '*'
+                            }).send(rows);
+                        else
+                            console.log(err);
+                    })
+                break;
+            case 'Součet':
+                connection.query('SELECT date_day,sum (??) FROM ?? GROUP BY date_day ', [
+                        req.body.column,
+                        req.body.table_name,
+                        moment(req.body.from_date).format('YYYY-MM-DD HH:mm:ss'),
+                        moment(req.body.to_date).format('YYYY-MM-DD HH:mm:ss')
+                    ],
+                    (err, rows, fields) => {
+                        if (!err)
+                            res.set({
+                                'Access-Control-Allow-Origin': '*'
+                            }).send(rows);
+                        else
+                            console.log(err);
+                    })
+
+                break;
+            case 'Maximum':
+                connection.query('SELECT date_day,max (??) FROM ?? GROUP BY date_day ', [
+                        req.body.column,
+                        req.body.table_name,
+                        moment(req.body.from_date).format('YYYY-MM-DD HH:mm:ss'),
+                        moment(req.body.to_date).format('YYYY-MM-DD HH:mm:ss')
+                    ],
+                    (err, rows, fields) => {
+                        if (!err)
+                            res.set({
+                                'Access-Control-Allow-Origin': '*'
+                            }).send(rows);
+                        else
+                            console.log(err);
+                    })
+                break;
+            case 'Minimum':
+                connection.query('SELECT date_day,min (??) FROM ?? GROUP BY date_day ', [
+                        req.body.column,
+                        req.body.table_name,
+                        moment(req.body.from_date).format('YYYY-MM-DD HH:mm:ss'),
+                        moment(req.body.to_date).format('YYYY-MM-DD HH:mm:ss')
+                    ],
+                    (err, rows, fields) => {
+                        if (!err)
+                            res.set({
+                                'Access-Control-Allow-Origin': '*'
+                            }).send(rows);
+                        else
+                            console.log(err);
+                    })
+                break;
+        }
+    })
+
     app.get('/tables', (req, res) => {
         connection.query('select * from selectable_tables', [], (err, rows) => {
             res.set({

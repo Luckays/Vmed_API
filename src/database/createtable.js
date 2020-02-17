@@ -4,25 +4,25 @@ import createConnection from './connection';
 export default function createtable() {
     let connection = createConnection();
     var sql =
-        'CREATE TABLE IF NOT EXISTS txt_table ( datum timestamp PRIMARY KEY NOT NULL ,s1 double, s2 double, s3 double,s4 double,s5 double,s6 double, s7 double,s8 double, s9 double)';
+        'CREATE TABLE IF NOT EXISTS txt_table ( datum timestamp PRIMARY KEY NOT NULL ,date_day varchar(255), s1 double, s2 double, s3 double,s4 double,s5 double,s6 double, s7 double,s8 double, s9 double)';
     connection.query(sql);
     var sql =
-        'CREATE TABLE IF NOT EXISTS all_table ( datum timestamp PRIMARY KEY NOT NULL, s1 double, s2 double, s3 double,s4 double,s5 double,s6 double, s7 double,s8 double, s9 double,s10 double,s11 double)';
+        'CREATE TABLE IF NOT EXISTS all_table ( datum timestamp PRIMARY KEY NOT NULL,date_day varchar(255),  s1 double, s2 double, s3 double,s4 double,s5 double,s6 double, s7 double,s8 double, s9 double,s10 double,s11 double)';
     connection.query(sql);
     var sql =
-        'CREATE TABLE IF NOT EXISTS mol_table (datum timestamp PRIMARY KEY NOT NULL,s1 double, s2 double, s3 double,s4 double,s5 double,s6 double, s7 double,s8 double, s9 double)';
+        'CREATE TABLE IF NOT EXISTS mol_table (datum timestamp PRIMARY KEY NOT NULL,date_day varchar(255), s1 double, s2 double, s3 double,s4 double,s5 double,s6 double, s7 double,s8 double, s9 double)';
     connection.query(sql);
     var sql =
-        'CREATE TABLE IF NOT EXISTS bud_table (datum timestamp PRIMARY KEY NOT NULL,s1 double, s2 double, s3 double,s4 double,s5 double,s6 double, s7 double,s8 double, s9 double)';
+        'CREATE TABLE IF NOT EXISTS bud_table (datum timestamp PRIMARY KEY NOT NULL,date_day varchar(255), s1 double, s2 double, s3 double,s4 double,s5 double,s6 double, s7 double,s8 double, s9 double)';
     connection.query(sql);
     var sql =
-        'CREATE TABLE IF NOT EXISTS vlh_table ( datum timestamp PRIMARY KEY NOT NULL,s1 double, s2 double, s3 double,s4 double,s5 double,s6 double, s7 double,s8 double, s9 double)';
+        'CREATE TABLE IF NOT EXISTS vlh_table ( datum timestamp PRIMARY KEY NOT NULL,date_day varchar(255), s1 double, s2 double, s3 double,s4 double,s5 double,s6 double, s7 double,s8 double, s9 double)';
+    connection.query(sql);
+    var sql =
+        'CREATE TABLE IF NOT EXISTS all_table2 ( datum timestamp PRIMARY KEY NOT NULL,date_day varchar(255),  s1 double, s2 double, s3 double,s4 double,s5 double,s6 double, s7 double,s8 double, s9 double,s10 double,s11 double)';
     connection.query(sql);
     var sql =
         'CREATE TABLE IF NOT EXISTS filename (fname VARCHAR(255) PRIMARY KEY,filesize double)';
-    connection.query(sql);
-        var sql =
-        'CREATE TABLE IF NOT EXISTS all_table2 ( datum timestamp PRIMARY KEY NOT NULL, s1 double, s2 double, s3 double,s4 double,s5 double,s6 double, s7 double,s8 double, s9 double,s10 double,s11 double)';
     connection.query(sql);
     var sql =
         'CREATE TABLE IF NOT EXISTS selectable_tables ( name_table varchar(255)PRIMARY KEY NOT NULL, title varchar (255))';
