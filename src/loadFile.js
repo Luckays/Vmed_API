@@ -5,12 +5,12 @@ import path from 'path';
 import fs from 'fs';
 import moment from 'moment';
 //set number of columns
-let r_all = 17;
-let r_txt = 15;
-let r_mol = 15;
-let r_bud = 15;
-let r_vlh = 15;
-let r2_all = 17;
+let r_all = 27;
+let r_txt = 12;
+let r_mol = 11;
+let r_bud = 23;
+let r_vlh = 24;
+let r2_all = 7;
 import columns from './columns';
 import createConnection from './database/connection';
 
@@ -25,6 +25,7 @@ const saveToDB = async (table, rows) => {
         return [
             moment(item.date).format('YYYY-MM-DD HH:mm:ss'),
             moment(item.day).format('L'),
+            moment(item.date).format('llll'),
             ...item.columns
         ];
     });

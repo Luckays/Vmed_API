@@ -1,9 +1,7 @@
 //function of index set name of folder, excerpt data, start openFolder
 //function loadFolderData first load all data from folders you define
 //function getFromDB get data from database to application
-import express from 'express'
 import openFolder from "./src/openFolder";
-import moment from "moment";
 import getFromDB from "./src/api/getFromDB";
 
 
@@ -19,7 +17,6 @@ const loadFoldersData = async () => {
         console.log("TIME: "+datetime)
         openFolder('slozka1')
         openFolder('slozka2')
-
     }, the_interval)
 
 };

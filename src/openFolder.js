@@ -12,26 +12,22 @@ const getFilenameRow = (file_name,folder_name) => {
     var name = [folder_name,file_name].join('/');
     let connection = createConnection();
     return new Promise(resolve => {
-
         var sql = "SELECT * FROM filename WHERE fname = ?";
-
-
         connection.query(sql, [name], function(error, results) {
-            connection.end();
+            if (results === undefined) results = 0
             results.length === 0
                 ? resolve(null)
-                : resolve(results[0]);
-
-
+                : resolve(results[0]);//p5idat error
+            connection.end();
         });
+
     });
+
 };
 
 const saveToFilename = async (filename , fileSizeInBytes,foldername) => {
     let connection = createConnection();
     var sqlfilename = "INSERT IGNORE INTO filename VALUES ('"+foldername+"' '/' '"+ filename + "','" + fileSizeInBytes + "')";
-
-
      connection.query(sqlfilename);
     connection.end();
 
