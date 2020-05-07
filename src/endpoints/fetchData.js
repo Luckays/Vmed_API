@@ -1,6 +1,8 @@
 import moment from 'moment';
 import { getConnection } from '../service/database';
+// old getFromDB
 
+//send data to graph
 function sendData(req, res, query) {
     getConnection().query(
         query,
@@ -21,7 +23,7 @@ function sendData(req, res, query) {
         }
     );
 }
-
+//send data to download
 function sendDownloadData(req, res, query) {
     getConnection().query(
         query,
@@ -42,7 +44,7 @@ function sendDownloadData(req, res, query) {
         }
     );
 }
-
+//send default data
 export function fetchData(req, res) {
     return sendData(
         req,
@@ -50,7 +52,7 @@ export function fetchData(req, res) {
         'SELECT datum,?? as sel_value FROM ?? WHERE datum >=? AND datum<=?'
     );
 }
-
+//send long-term data to chart
 export function fetchDataAnalysis(req, res) {
     let analysis_type = req.body.group_type;
 
@@ -91,7 +93,7 @@ export function fetchDataAnalysis(req, res) {
             );
     }
 }
-
+//send long-term data to download
 export function fetchDataDownload(req, res) {
     let analysis_type = req.body.group_type;
 

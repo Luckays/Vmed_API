@@ -2,7 +2,7 @@ import mysql from 'mysql';
 import { runMigrations } from './migration';
 
 let pool;
-
+//old connection - get connection to db
 export async function invokeConnection() {
     return new Promise((resolve) => {
         pool = mysql.createPool({

@@ -1,7 +1,7 @@
 import { getConnection } from '../service/database';
 import _ from 'lodash';
 import moment from 'moment';
-
+//old function getFilenameRow - check if is file already in db or not
 export async function fetchSingleImportedFile(fullPathname) {
     return new Promise((resolve) => {
         const query = 'SELECT * FROM filename WHERE fname = ?';
@@ -11,7 +11,7 @@ export async function fetchSingleImportedFile(fullPathname) {
         });
     });
 }
-
+//store new file to db or update file size
 export async function storeImportedFile(fullPathname, bytes) {
     const file = await fetchSingleImportedFile(fullPathname);
 
@@ -35,7 +35,7 @@ export async function storeImportedFile(fullPathname, bytes) {
         });
     });
 }
-
+//old saveToDB - save data to db
 export async function storeFileData(fullPath, tableName, parsedLines = []) {
     const formattedRows = parsedLines.map((line) => [
         moment(line.date).format('YYYY-MM-DD HH:mm:ss'),

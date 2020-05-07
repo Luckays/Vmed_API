@@ -1,5 +1,6 @@
 import { getConnection } from '../service/database';
 
+//send day data to see columns
 export function fetchSelectableColumns(req, res) {
     if (req.body.table_name === '--') {
         return res.status(400).json({

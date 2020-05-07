@@ -1,5 +1,5 @@
 import { getConnection } from '../service/database';
-
+//get from db tables from db
 export function fetchAllSelectableTables() {
     return new Promise((resolve) => {
         getConnection().query(

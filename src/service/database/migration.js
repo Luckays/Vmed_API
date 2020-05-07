@@ -1,5 +1,5 @@
 import { getConnection } from './index';
-
+//old createTable - create or update tables in db
 export function runMigrations() {
     const connection = getConnection();
 

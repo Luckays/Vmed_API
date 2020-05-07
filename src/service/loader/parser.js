@@ -5,7 +5,7 @@ import {
     storeFileData,
     storeImportedFile,
 } from '../../repositories/importedFileRepository';
-
+//old loadFile - separate files dependent on extension
 export function parseFile(fullPath, bytes) {
     const extension = path.extname(fullPath).split('.')[1].toLocaleLowerCase();
 
@@ -35,7 +35,7 @@ export function parseFile(fullPath, bytes) {
         await storeImportedFile(fullPath, bytes);
     });
 }
-
+//get table name
 function getTableName(extension) {
     switch (extension) {
         case 'all':
@@ -54,7 +54,7 @@ function getTableName(extension) {
             return 'vlh_table';
     }
 }
-
+// get number of columns
 function getNumberOfColumns(extension) {
     switch (extension) {
         case 'all':
@@ -73,7 +73,7 @@ function getNumberOfColumns(extension) {
             return 24;
     }
 }
-
+//old columns - split data assign
 function parse(line = [], numberOfRows) {
     const definition = {
         date: new Date(),

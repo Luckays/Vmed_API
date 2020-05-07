@@ -1,6 +1,6 @@
 import moment from 'moment';
 import { getConnection } from '../service/database';
-
+//send day data to real time
 export function fetchDayDataReal(req, res) {
     getConnection().query(
         'SELECT day_time,?? as sel_value FROM ?? WHERE datum >=?',

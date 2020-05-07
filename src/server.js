@@ -11,21 +11,21 @@ import {
     fetchDataAnalysis,
     fetchDataDownload,
 } from './endpoints/fetchData';
-
+//old getFromDB - communication with server
 export function createServer(port) {
     const app = express();
     app.use(bodyParser.json());
     app.use(cors());
 
     app.post('/data', fetchData);
-    app.post('/data_analysis', fetchDataAnalysis);
+    app.post('/show_data', fetchDataAnalysis);
     app.post('/download', fetchDataDownload);
 
-    app.get('/table', fetchSelectableTables);
-    app.post('/column', fetchSelectableColumns);
-    app.post('/data_day', fetchDayData);
-    app.post('/data_day_real', fetchDayDataReal);
-    app.post('/dday', fetchDayDataDownload);
+    app.get('/tables', fetchSelectableTables);
+    app.post('/columns', fetchSelectableColumns);
+    app.post('/show_data_day', fetchDayData);
+    app.post('/show_data_day_real', fetchDayDataReal);
+    app.post('/download_day', fetchDayDataDownload);
 
     app.listen(port);
     console.log(`Server is running on port ${port}`);
