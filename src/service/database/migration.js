@@ -1,8 +1,8 @@
-// make new table, or add column: EXAMPLE var sql= "ALTER TABLE txt_table  ADD (s9 VARCHAR(25))";, run separately
-// is necessary have same number of column in database and in parseFile
-import createConnection from './connection';
-export default function createtable() {
-    let connection = createConnection();
+import { getConnection } from './index';
+
+export function runMigrations() {
+    const connection = getConnection();
+
     var sql =
         'CREATE TABLE IF NOT EXISTS txt_table ( datum timestamp PRIMARY KEY NOT NULL ,date_day varchar(255),day_time varchar(255),  teplota_u_GPS_anteny double, tlak_u_GPS_anteny double, vlhkost_u_GPS_anteny double,cteni_teploty double,cteni_tlaku double,cteni_vlhkosti double)';
     connection.query(sql);
@@ -27,12 +27,9 @@ export default function createtable() {
     var sql =
         'CREATE TABLE IF NOT EXISTS selectable_tables ( name_table varchar(255)PRIMARY KEY NOT NULL, title varchar (255))';
     connection.query(sql);
-   var sql = `INSERT IGNORE INTO selectable_tables VALUES ('all_table2','Data2'),('mol_table','Historická meteodata'),('all_table','Minutová data'),('bud_table','Čidla v pudově'),('txt_table','Základní meteo'),('vlh_table','Vlhkosti půdy')`;
+    var sql = `INSERT IGNORE INTO selectable_tables VALUES ('all_table2','Data2'),('mol_table','Historická meteodata'),('all_table','Minutová data'),('bud_table','Čidla v pudově'),('txt_table','Základní meteo'),('vlh_table','Vlhkosti půdy')`;
     connection.query(sql);
     var sql =
         'CREATE TABLE IF NOT EXISTS dates ( hodina timestamp PRIMARY KEY NOT NULL,den varchar(255),mesic varchar(255),rok varchar (255))';
     connection.query(sql);
-    /* var sql= "ALTER TABLE all_table  ADD (s11 double)"
-        connection.query(sql);*/
 }
-createtable();

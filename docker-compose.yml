@@ -1,0 +1,39 @@
+version: '3.7'
+services:
+    app:
+        build:
+            args:
+                user: dave
+                uid: 1000
+            context: ./
+            dockerfile: Dockerfile
+        image: metapp-api
+        container_name: metapp-api
+        restart: unless-stopped
+        working_dir: /var/www/
+        ports:
+            - 4000:4000
+        volumes:
+            - ./:/var/www
+        networks:
+            - metapp
+
+    db:
+        image: mariadb:latest
+        container_name: metapp-db
+        restart: unless-stopped
+        environment:
+            MYSQL_DATABASE: metapp
+            MYSQL_ROOT_PASSWORD: metapp
+            MYSQL_PASSWORD: metapp
+            MYSQL_USER: metapp
+            SERVICE_TAGS: dev
+            SERVICE_NAME: mariadb
+        ports:
+            - 3308:3306
+        networks:
+            - metapp
+
+networks:
+    metapp:
+        driver: bridge
