@@ -9,6 +9,7 @@ import post_download from "../database/post_download";
 const connection = CreateConnection();
 const app = express();
 import cors from 'cors'
+require('dotenv').config();
 export default () => {
     app.use(bodyParser.json());
     app.listen(4000);
@@ -19,7 +20,7 @@ export default () => {
    post_data(req,res,'SELECT datum,?? as sel_value FROM ?? WHERE datum >=? AND datum<=?')
     })
 
-    app.post('/show_data', (req, res) => {
+    app.post(process.env.DATA_ANALYSIS, (req, res) => {
 
 
         let analysis_type = req.body.group_type;
@@ -42,7 +43,7 @@ export default () => {
                   break;
         }
     })
-    app.post('/download', (req, res) => {
+    app.post(process.env.DATA_DOWNLOAD, (req, res) => {
         let analysis_type = req.body.group_type;
         switch (analysis_type) {
             case 'Průměr':
@@ -63,7 +64,7 @@ export default () => {
         }
         })
 
-    app.get('/tables', (req, res) => {
+    app.get(process.env.DATA_TABLES, (req, res) => {
         connection.query('select * from selectable_tables', [], (err, rows) => {
             res.set({
                 'Access-Control-Allow-Origin': '*'
@@ -71,7 +72,7 @@ export default () => {
         })
     })
 
-    app.post('/columns', (req, res) => {
+    app.post(process.env.DATA_COLUMNS, (req, res) => {
         if (req.body.table_name != '--') {
             const sql = 'show columns from ' + req.body.table_name;
             connection.query(sql, [], (err, rows) => {
@@ -86,7 +87,7 @@ export default () => {
         }
     })
     /////////
-    app.post('/show_data_day', (req, res) => {
+    app.post(process.env.DATA_DAY, (req, res) => {
         connection.query('SELECT day_time,?? as sel_value FROM ?? WHERE date_day =?', [
                 req.body.column,
                 req.body.table_name,
@@ -103,7 +104,7 @@ export default () => {
             })
     })
 
-    app.post('/show_data_day_real', (req, res) => {
+    app.post(process.env.DATA_DAY_R, (req, res) => {
         connection.query('SELECT day_time,?? as sel_value FROM ?? WHERE datum >=?', [
                 req.body.column,
                 req.body.table_name,
@@ -120,7 +121,7 @@ export default () => {
             })
     })
 
-    app.post('/download_day', (req, res) => {
+    app.post(process.env.DATA_DOWNLOAD_DAY, (req, res) => {
         connection.query('SELECT day_time,?? as sel_value FROM ?? WHERE date_day =?', [
                 req.body.column,
                 req.body.table_name,
