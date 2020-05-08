@@ -20,4 +20,4 @@ jobs:
                       cd /var/www/html/met/met_api
                       git pull origin master
                       npm install
-                      npm run prod
+                      npm run start:prod
