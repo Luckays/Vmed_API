@@ -17,7 +17,7 @@ jobs:
                   key: ${{ secrets.PRIVATE_KEY }}
                   port: 22
                   script: |
-                      cd /var/www/html
+                      cd /var/www/html/met
                       git pull origin master
                       npm install
                       npm run prod
