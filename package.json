@@ -24,7 +24,7 @@
     },
     "scripts": {
         "start": "nodemon --exec babel-node index.js",
-        "start:prod": "pm2 start npm --interpreter babel-node index.js",
+        "start:prod": "pm2 start --interpreter babel-node index.js",
         "sexy-code": "prettier . --write",
         "docker:dev:up": "docker-compose build app && docker-compose up",
         "docker:dev:start": "docker-compose exec app npm run start"
