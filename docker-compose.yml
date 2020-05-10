@@ -36,4 +36,4 @@ services:
 
 networks:
     metapp:
-        driver: bridge
+        driver: bridge 
