@@ -1,7 +1,7 @@
 FROM keymetrics/pm2:latest-alpine
 WORKDIR /usr/berich
 
-# Bundle APP files
+# Bundle APP files 
 COPY . .
 
 # Install app dependencies
