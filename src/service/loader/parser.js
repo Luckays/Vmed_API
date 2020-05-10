@@ -22,6 +22,7 @@ export function parseFile(fullPath, bytes) {
     readInterface.on('line', (line) => {
         i++;
         if (extension === 'txt' && i === 1) return;
+        if (extension === 'tst') return;
         parsedLines.push(
             parse(
                 line.split(' ').filter((item) => item !== ''),
