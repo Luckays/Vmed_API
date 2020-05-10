@@ -40,18 +40,20 @@ function getTableName(extension) {
     switch (extension) {
         case 'all':
             return 'all_table';
-
+        break;
         case 'txt':
             return 'txt_table';
-
+ break;
         case 'mol':
             return 'mol_table';
-
+ break;
         case 'bud':
             return 'bud_table';
-
+ break;
         case 'vlh':
             return 'vlh_table';
+        default: return
+         break;    
     }
 }
 // get number of columns
@@ -59,18 +61,21 @@ function getNumberOfColumns(extension) {
     switch (extension) {
         case 'all':
             return 27;
-
+ break;
         case 'txt':
             return 12;
-
+ break;
         case 'mol':
             return 11;
-
+ break;
         case 'bud':
             return 23;
-
+ break;
         case 'vlh':
             return 24;
+             break;
+        default: return
+           break;
     }
 }
 //old columns - split data assign
