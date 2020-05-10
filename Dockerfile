@@ -9,4 +9,4 @@ ENV NPM_CONFIG_LOGLEVEL warn
 RUN pm2 install typescript
 
 CMD [ "npm", "run", "start" ]
-CMD [ "pm2", "monit" ]
+CMD [ "pm2", "monit" ] 
