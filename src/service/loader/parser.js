@@ -34,6 +34,9 @@ export function parseFile(fullPath, bytes) {
         case 'dat':
             return;
             break;
+        case 'wvz':
+            return;
+            break;
     }
 
 
