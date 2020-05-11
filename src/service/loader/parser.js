@@ -37,6 +37,9 @@ export function parseFile(fullPath, bytes) {
         case 'wvz':
             return;
             break;
+        case 'old':
+            return;
+            break;
     }
 
 
