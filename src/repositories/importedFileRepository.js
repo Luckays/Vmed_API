@@ -45,6 +45,10 @@ export async function storeFileData(fullPath, tableName, parsedLines = []) {
     ]);
 
     return new Promise((resolve) => {
+        if (formattedRows.length === 0) {
+            return resolve(0)
+        }
+        
         const query = `INSERT IGNORE INTO ${tableName} VALUES ? `;
         getConnection().query(query, [formattedRows], function (err, result) {
             if (err) throw err;
