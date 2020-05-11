@@ -8,7 +8,7 @@ import {
 //old loadFile - separate files dependent on extension
 export function parseFile(fullPath, bytes) {
     const extension = path.extname(fullPath).split('.')[1].toLocaleLowerCase();
-    if (extension === 'tst' || extension === 'met') return;
+    if (extension !='all' || extension != 'vlh' || extension != 'bud' || extension != 'txt' || extension != 'vgl' || extension != 'bgl') return;
     const readInterface = readline.createInterface({
         input: fs.createReadStream(fullPath),
         console: false,
@@ -55,6 +55,13 @@ function getTableName(extension) {
  break;
         case 'vlh':
             return 'vlh_table';
+            break;
+        case 'vgl':
+            return 'vgl_table';
+            break;
+        case 'bgl':
+            return 'bgl_table';
+            break;
     }
 }
 // get number of columns
@@ -75,6 +82,12 @@ function getNumberOfColumns(extension) {
         case 'vlh':
             return 24;
              break;
+        case 'vgl':
+            return 31;
+            break;
+        case 'bgl':
+            return 25;
+            break;
     }
 }
 //old columns - split data assign
