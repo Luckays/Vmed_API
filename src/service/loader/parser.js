@@ -8,7 +8,7 @@ import {
 //old loadFile - separate files dependent on extension
 export function parseFile(fullPath, bytes) {
     const extension = path.extname(fullPath).split('.')[1].toLocaleLowerCase();
-
+    if (extension === 'tst') return;
     const readInterface = readline.createInterface({
         input: fs.createReadStream(fullPath),
         console: false,
@@ -22,7 +22,7 @@ export function parseFile(fullPath, bytes) {
     readInterface.on('line', (line) => {
         i++;
         if (extension === 'txt' && i === 1) return;
-        if (extension === 'tst') return;
+
         parsedLines.push(
             parse(
                 line.split(' ').filter((item) => item !== ''),
@@ -53,8 +53,6 @@ function getTableName(extension) {
  break;
         case 'vlh':
             return 'vlh_table';
-        default: return
-         break;    
     }
 }
 // get number of columns
@@ -75,8 +73,6 @@ function getNumberOfColumns(extension) {
         case 'vlh':
             return 24;
              break;
-        default: return
-           break;
     }
 }
 //old columns - split data assign
