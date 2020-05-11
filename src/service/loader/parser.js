@@ -8,7 +8,7 @@ import {
 //old loadFile - separate files dependent on extension
 export function parseFile(fullPath, bytes) {
     const extension = path.extname(fullPath).split('.')[1].toLocaleLowerCase();
-    if (extension === 'tst') return;
+    if (extension === 'tst' || extension === 'met') return;
     const readInterface = readline.createInterface({
         input: fs.createReadStream(fullPath),
         console: false,
