@@ -10,7 +10,7 @@ export function parseFile(fullPath, bytes) {
     const extension = path.extname(fullPath).split('.')[1].toLocaleLowerCase();
 
     const readInterface = readline.createInterface({
-        input: fs.createReadStream(path.join(__dirname, '../../../', fullPath)),
+        input: fs.createReadStream(fullPath),
         console: false,
     });
 
