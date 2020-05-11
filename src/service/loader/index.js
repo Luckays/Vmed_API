@@ -2,8 +2,8 @@ import fs from 'fs';
 import { fetchSingleImportedFile } from '../../repositories/importedFileRepository';
 import { parseFile } from './parser';
 //old function like openFolder - first upload all files, then set refresh interval
-export function watchFolders(folders = [], interval) {
-    folders.forEach(checkFolder);
+export async function  watchFolders(folders = [], interval) {
+    await folders.forEach(checkFolder);
     setInterval(() => folders.forEach(checkFolder), interval);
 }
 //old function foldername - get filenames from folder
