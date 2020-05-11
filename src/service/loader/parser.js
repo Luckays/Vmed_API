@@ -9,7 +9,7 @@ import {
 export function parseFile(fullPath, bytes) {
     const extension = path.extname(fullPath).split('.')[1].toLocaleLowerCase();
     if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/aktual.txt') return;
-    if (extension ==='met' || extension === 'tst' ||extension==='puv'||extension==='res') return;
+    if (extension ==='met' || extension === 'tst' ) return;
   //  if (extension=== 'err' ||extension === 'exe') return;
 
     const readInterface = readline.createInterface({
