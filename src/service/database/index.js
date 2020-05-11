@@ -6,10 +6,10 @@ let pool;
 export async function invokeConnection() {
     return new Promise((resolve) => {
         pool = mysql.createPool({
-            host: process.env.DB_HOST,
-            user: process.env.DB_USER,
-            password: process.env.DB_PASSWORD,
-            database: process.env.DB_DATABASE,
+            host: 'localhost',
+            user: 'root',
+            password: 'Luckas.11995544',
+            database: 'data',
             port: process.env.DB_PORT,
         });
 
