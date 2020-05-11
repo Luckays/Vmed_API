@@ -8,7 +8,8 @@ import {
 //old loadFile - separate files dependent on extension
 export function parseFile(fullPath, bytes) {
     const extension = path.extname(fullPath).split('.')[1].toLocaleLowerCase();
-    if (extension !='all' || extension != 'vlh' || extension != 'bud' || extension != 'txt' || extension != 'vgl' || extension != 'bgl') return;
+    if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/aktual.txt') return;
+    if (extension ==='met' || extension === 'tpt' || extension=== 'err' ||extension === 'exe'||extension === 'cfg' ||extension==='dat') return;
     const readInterface = readline.createInterface({
         input: fs.createReadStream(fullPath),
         console: false,
