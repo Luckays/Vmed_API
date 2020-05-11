@@ -15,7 +15,7 @@ export function parseFile(fullPath, bytes) {
     });
 
     const tableName = getTableName(extension);
-    console.log(tableName)
+    //console.log(tableName)
 
     const numberOfRows = getNumberOfColumns(extension);
     const parsedLines = [];

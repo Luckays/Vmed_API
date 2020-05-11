@@ -20,7 +20,7 @@ async function checkFile(folder, filename) {
     const fullPathname = `${folder}/${filename}`;
     const bytes = fs.statSync(fullPathname).size;
     const row = await fetchSingleImportedFile(fullPathname);
-
+    console.log(fullPathname)
     if (row === undefined || row.filesize < bytes) {
         parseFile(fullPathname, bytes);
     }

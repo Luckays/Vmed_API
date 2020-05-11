@@ -28,7 +28,7 @@ export async function storeImportedFile(fullPathname, bytes) {
     }
 
     return new Promise((resolve) => {
-        console.log(fullPathname)
+
 
         const query = 'INSERT IGNORE INTO filename VALUES (?, ?)';
         getConnection().query(query, [fullPathname, bytes], function (error) {
