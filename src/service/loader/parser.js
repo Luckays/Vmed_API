@@ -9,9 +9,33 @@ import {
 export function parseFile(fullPath, bytes) {
     const extension = path.extname(fullPath).split('.')[1].toLocaleLowerCase();
     if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/aktual.txt') return;
-    if (extension ==='met' || extension === 'tst' || extension === 'puv') return;
-    if (extension ==='res') return;
-    if (extension=== 'err' ||extension === 'exe') return;
+    switch (extension) {
+        case 'met':
+            return;
+            break;
+        case 'tst':
+            return;
+            break;
+        case 'puv':
+            return;
+            break;
+        case 'res':
+            return;
+            break;
+        case 'err':
+            return;
+            break;
+        case 'exe':
+            return;
+            break;
+        case 'cfg':
+            return;
+            break;
+        case 'dat':
+            return;
+            break;
+    }
+
 
     const readInterface = readline.createInterface({
         input: fs.createReadStream(fullPath),
