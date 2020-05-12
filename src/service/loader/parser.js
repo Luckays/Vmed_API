@@ -41,9 +41,7 @@ export async function parseFile(fullPath, bytes) {
             case 'old':
                 return;
                 break;
-                case 'txt':
-                return;
-                break;
+              
         }
 
         const readInterface = readline.createInterface({
