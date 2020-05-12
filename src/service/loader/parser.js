@@ -5,76 +5,78 @@ import {
     storeFileData,
     storeImportedFile,
 } from '../../repositories/importedFileRepository';
-//old loadFile - separate files dependent on extension
-export function parseFile(fullPath, bytes) {
-    const extension = path.extname(fullPath).split('.')[1].toLocaleLowerCase();
-    if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/aktual.txt') return;
-    switch (extension) {
-        case 'met':
-            return;
-            break;
-        case 'tst':
-            return;
-            break;
-        case 'puv':
-            return;
-            break;
-        case 'res':
-            return;
-            break;
-        case 'err':
-            return;
-            break;
-        case 'exe':
-            return;
-            break;
-        case 'cfg':
-            return;
-            break;
-        case 'dat':
-            return;
-            break;
-        case 'wvz':
-            return;
-            break;
-        case 'old':
-            return;
-            break;
-            case 'txt':
-            return;
-            break;
-    }
 
+export async function parseFile(fullPath, bytes) {
+    return new Promise(resolve => {
+        const extension = path.extname(fullPath).split('.')[1].toLocaleLowerCase();
+        if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/aktual.txt') return;
+        switch (extension) {
+            case 'met':
+                return;
+                break;
+            case 'tst':
+                return;
+                break;
+            case 'puv':
+                return;
+                break;
+            case 'res':
+                return;
+                break;
+            case 'err':
+                return;
+                break;
+            case 'exe':
+                return;
+                break;
+            case 'cfg':
+                return;
+                break;
+            case 'dat':
+                return;
+                break;
+            case 'wvz':
+                return;
+                break;
+            case 'old':
+                return;
+                break;
+                case 'txt':
+                return;
+                break;
+        }
 
-    const readInterface = readline.createInterface({
-        input: fs.createReadStream(fullPath),
-        console: false,
-    });
+        const readInterface = readline.createInterface({
+            input: fs.createReadStream(fullPath),
+            console: false,
+        });
 
-    const tableName = getTableName(extension);
-    //console.log(tableName)
+        const tableName = getTableName(extension);
 
-    const numberOfRows = getNumberOfColumns(extension);
-    const parsedLines = [];
-    let i = 0;
+        const numberOfRows = getNumberOfColumns(extension);
+        const parsedLines = [];
+        let i = 0;
+        
+        readInterface.on('line', (line) => {
+            i++;
+            if (extension === 'txt' && i === 1) return;
 
-    readInterface.on('line', (line) => {
-        i++;
-        if (extension === 'txt' && i === 1) return;
+            parsedLines.push(
+                parse(
+                    line.split(' ').filter((item) => item !== ''),
+                    numberOfRows
+                )
+            );
+        });
 
-        parsedLines.push(
-            parse(
-                line.split(' ').filter((item) => item !== ''),
-                numberOfRows
-            )
-        );
-    });
-
-    readInterface.on('close', async () => {
-        await storeFileData(fullPath, tableName, parsedLines);
-        await storeImportedFile(fullPath, bytes);
-    });
+        readInterface.on('close', async () => {
+            await storeFileData(fullPath, tableName, parsedLines);
+            await storeImportedFile(fullPath, bytes);
+            resolve()
+        });
+    })
 }
+
 //get table name
 function getTableName(extension) {
     switch (extension) {
@@ -101,6 +103,7 @@ function getTableName(extension) {
             break;
     }
 }
+
 // get number of columns
 function getNumberOfColumns(extension) {
     switch (extension) {
@@ -127,6 +130,7 @@ function getNumberOfColumns(extension) {
             break;
     }
 }
+
 //old columns - split data assign
 function parse(line = [], numberOfRows) {
     const definition = {
