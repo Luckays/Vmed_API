@@ -6,7 +6,7 @@ import { parseFile } from './parser';
 export async function watchFolders(folders = [], interval) {
     do {
         await folders.forEach(checkFolder);
-        await wait(5 * 1000)
+        await wait(interval);
     } while (true);
 }
 
