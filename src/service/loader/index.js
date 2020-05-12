@@ -5,7 +5,7 @@ import { parseFile } from './parser';
 //old function like openFolder - first upload all files, then set refresh interval
 export async function watchFolders(folders = [], interval) {
 await folders.forEach(checkFolder);
-    setInterval(() => folders.forEach(checkFolder), interval);
+setInterval(() => folders.forEach(checkFolder), interval);
 }
 
 async function wait(ms) {
