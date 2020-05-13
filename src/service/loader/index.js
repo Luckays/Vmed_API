@@ -8,9 +8,9 @@ await folders.forEach(checkFolder);
 setInterval(() => folders.forEach(checkFolder), interval);
 }
 
-async function wait(ms) {
+/*async function wait(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
-}
+}*/
 
 //old function foldername - get filenames from folder
 async function checkFolder(folder) {
