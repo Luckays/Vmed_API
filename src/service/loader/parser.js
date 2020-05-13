@@ -10,6 +10,7 @@ export async function parseFile(fullPath, bytes) {
     return new Promise(resolve => {
         const extension = path.extname(fullPath).split('.')[1].toLocaleLowerCase();
         if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/aktual.txt') return;
+        console.log("tady"+fullPath)
         switch (extension) {
             case 'met':
                 return;
