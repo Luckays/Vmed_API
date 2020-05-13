@@ -9,7 +9,7 @@ import {
 export async function parseFile(fullPath, bytes) {
     return new Promise(resolve => {
         const extension = path.extname(fullPath).split('.')[1].toLocaleLowerCase();
-        if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/aktual.txt') return;
+      /*  if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/aktual.txt') return;
         switch (extension) {
             case 'met':
                 return;
@@ -42,7 +42,7 @@ export async function parseFile(fullPath, bytes) {
                 return;
                 break;
               
-        }
+        }*/
 
         const readInterface = readline.createInterface({
             input: fs.createReadStream(fullPath),
