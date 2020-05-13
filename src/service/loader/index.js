@@ -22,9 +22,9 @@ async function checkFolder(folder) {
         const filename = filenames.shift();
         await checkFile(folder, filename);
         
-        process.stdout.clearLine(0);
+        /*process.stdout.clearLine(0);
         process.stdout.cursorTo(0);
-        process.stdout.write(`📸📸 Checked ${count - filenames.length}/${count} files from ${folder}`);
+        process.stdout.write(`📸📸 Checked ${count - filenames.length}/${count} files from ${folder}`);*/
     }
         
     process.stdout.write('\n');
