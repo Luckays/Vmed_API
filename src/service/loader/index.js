@@ -23,12 +23,12 @@ async function checkFolder(folder, excluded = []) {
     
     while (filenames.length > 0) {
         const filename = filenames.shift();
-        if (excluded.indexOf(filename) !== -1) continue;
-        
-        await checkFile(folder, filename);
-        
         process.stdout.clearLine(0);
         process.stdout.cursorTo(0);
+        
+        if (excluded.indexOf(filename) !== -1) continue;
+        
+        await checkFile(folder, filename); 
         process.stdout.write(`📸📸 Checked ${count - filenames.length}/${count} files from ${folder}`);
     }
         
