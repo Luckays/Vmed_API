@@ -23,7 +23,7 @@ async function checkFolder(folder, excluded = []) {
     
     while (filenames.length > 0) {
         const filename = filenames.shift();
-        if (excluded.indexOf(filename) !== -1) break;
+        if (excluded.indexOf(filename) !== -1) continue;
         
         await checkFile(folder, filename);
         
