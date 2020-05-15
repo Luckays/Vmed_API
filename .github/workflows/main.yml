@@ -1,11 +1,11 @@
-name: CI
+name: Deploy API
 
 on:
     push:
         branches: [master]
 
 jobs:
-    build:
+    deploy-production:
         runs-on: ubuntu-latest
 
         steps:
@@ -20,4 +20,5 @@ jobs:
                       cd /var/www/html/met/met_api
                       git pull origin master
                       npm install
+                      sudo npm run start:prod
  
