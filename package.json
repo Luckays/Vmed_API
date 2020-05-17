@@ -25,7 +25,7 @@
     "scripts": {
         "start": "nodemon --exec babel-node index.js",
         "stop": "pm2 stop metapi",
-        "start:prod": "pm2 restart --name metapi --interpreter babel-node index.js",
+        "start:prod": "pm2 start --name metapi --interpreter babel-node index.js",
         "sexy-code": "prettier . --write",
         "docker:dev:up": "docker-compose build app && docker-compose up",
         "docker:dev:start": "docker-compose exec app npm run start"
