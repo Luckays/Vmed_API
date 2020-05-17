@@ -22,7 +22,7 @@ export function createServer(port) {
     app.post('/download', fetchDataDownload);
 
     app.get('/tables', fetchSelectableTables);
-    app.post('/columns', fetchSelectableColumns);
+    app.post('/column', fetchSelectableColumns);
     app.post('/show_data_day', fetchDayData);
     app.post('/show_data_day_real', fetchDayDataReal);
     app.post('/download_day', fetchDayDataDownload);
