@@ -8,7 +8,7 @@ export function fetchSelectableColumns(req, res) {
         });
     }
 
-    const query = 'show columns from vlh_table';
+    const query = 'show columns from ' + req.body.table_name;
     getConnection().query(query, [], (err, rows) => {
         // TODO: predelat na vraceni chybove response
         if (err) return console.log(err);
