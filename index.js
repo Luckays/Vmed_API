@@ -6,6 +6,6 @@ import { invokeConnection } from './src/service/database';
 (async function () {
     config();
     await invokeConnection();
-    createServer(4840);
+    createServer(5000);
     watchFolders(process.env.FOLDERS.split(','), process.env.EXCLUDED.split(','), 5 * 1000);
 })();

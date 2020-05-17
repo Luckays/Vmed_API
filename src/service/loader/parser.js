@@ -11,13 +11,13 @@ export async function parseFile(fullPath, bytes) {
         const extension = path.extname(fullPath).split('.')[1].toLocaleLowerCase();
         if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/aktual.txt') return resolve();
         switch (extension) {
-            case 'met':
+            case 'juk':
                 return resolve();
                 break;
             case 'tst':
                 return resolve();
                 break;
-            case 'puv':
+            case 'mol':
                 return resolve();
                 break;
             case 'res':
