@@ -31,7 +31,7 @@
     },
     "prettier": {
         "tabWidth": 4,
-        "singleQuote": true,
+        "singleQuote": true, 
         "semi": true
     }
 }
