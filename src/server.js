@@ -10,7 +10,7 @@ import {
     fetchData,
     fetchDataAnalysis,
     fetchDataDownload,
-} from './endpoints/fetchData';
+} from './endpoints/fetchData'; 
 //old getFromDB - communication with server
 export function createServer(port) {
     const app = express();
