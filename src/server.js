@@ -1,7 +1,7 @@
 import express from 'express'; 
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import { fetchSelectableTables } from './endpoints/fetchSelectableTables';
+import { fetchSelectableTables } from './endpoints/fetchSelectableTables'; 
 import { fetchSelectableColumns } from './endpoints/fetchSelectableColumns';
 import { fetchDayData } from './endpoints/fetchDayData';
 import { fetchDayDataReal } from './endpoints/fetchDayDataReal';
