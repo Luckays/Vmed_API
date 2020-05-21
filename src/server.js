@@ -5,7 +5,7 @@ import { fetchSelectableTables } from './endpoints/fetchSelectableTables';
 import { fetchSelectableColumns } from './endpoints/fetchSelectableColumns';
 import { fetchDayData } from './endpoints/fetchDayData';
 import { fetchDayDataReal } from './endpoints/fetchDayDataReal';
-import { fetchDayDataDownload } from './endpoints/fetchDayDataDownload';
+import { fetchDayDataDownload } from './endpoints/fetchDayDataDownload'; 
 import {
     fetchData,
     fetchDataAnalysis,
