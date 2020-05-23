@@ -17,9 +17,47 @@ jobs:
                   key: ${{ secrets.PRIVATE_KEY }}
                   port: 22
                   script: |
-                      cd /var/www/html/met/met_api
-                      git pull origin master
+                      BASEDIR="/var/www/html/met/met_api2"
+                      
+                      if [ ! -d $BASEDIR ]; then
+                          mkdir -p $BASEDIR;
+                      fi
+                      
+                      if [ ! -d "$BASEDIR/releases" ]; then
+                          mkdir -p "$BASEDIR/releases";
+                      fi
+                      
+                      if [ ! -d "$BASEDIR/release" ]; then
+                          rm -rf "$BASEDIR/release";
+                      fi
+                      
+                      echo CLONING REPOSITORY...
+                      cd $BASEDIR
+                      git clone git@bernard-api.github.com:Luckays/Vmed_API.git release
+                      
+                      echo BUILDING...
+                      let NEXT=0
+                      for i in $( ls "$BASEDIR/'$1'/releases" ); do
+                        if [ $i -gt $NEXT ]; then
+                            let NEXT=$i;
+                        fi
+                        continue
+                      done
+                      let NEXT=$NEXT+1
+                      mv -rf release "$BASEDIR/releases/$NEXT"
+                      
+                      cd "$BASEDIR/releases/$NEXT"
                       npm install
+                      
+                      cd $BASEDIR
+                      if [ -L current ] ; then
+                        if [ -e current ] ; then
+                            rm current;
+                        fi
+                      fi
+                      ln -s "releases/$NEXT" current
+                      cd current
+                      
                       sudo npm run stop
                       sudo npm run start:prod
  
