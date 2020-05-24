@@ -37,7 +37,7 @@ jobs:
                       
                       echo BUILDING...
                       let NEXT=0
-                      for i in $( ls "$BASEDIR/'$1'/releases" ); do
+                      for i in $( ls "$BASEDIR/releases" ); do
                         if [ $i -gt $NEXT ]; then
                             let NEXT=$i;
                         fi
