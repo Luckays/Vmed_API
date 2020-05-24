@@ -44,7 +44,7 @@ jobs:
                         continue
                       done
                       let NEXT=$NEXT+1
-                      mv -rf release "$BASEDIR/releases/$NEXT"
+                      mv -f release "$BASEDIR/releases/$NEXT"
                       
                       cd "$BASEDIR/releases/$NEXT"
                       npm install
