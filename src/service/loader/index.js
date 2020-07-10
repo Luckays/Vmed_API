@@ -32,7 +32,6 @@ async function checkFolder(folder, excluded = []) {
         process.stdout.write(`📸📸 Checked V_3 ${count - filenames.length}/${count} files from ${folder}`);
     }
 
-
     process.stdout.write('\n');
 }
 
