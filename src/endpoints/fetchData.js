@@ -10,8 +10,8 @@ function sendData(req, res, query) {
         [
             req.body.column,
             req.body.table_name,
-            moment(req.body.from_date).format('YYYY-MM-DD HH:mm:ss'),
-            moment(req.body.to_date).format('YYYY-MM-DD HH:mm:ss'),
+            moment(req.body.from_date).format('YYYY-MM-DD'),
+            moment(req.body.to_date).format('YYYY-MM-DD'),
         ],
         (err, rows) => {
             // TODO: predelat na vraceni chybove response
@@ -31,8 +31,8 @@ function sendDownloadData(req, res, query) {
         [
             req.body.column,
             req.body.table_name,
-            moment(req.body.from_date).format('YYYY-MM-DD HH:mm:ss'),
-            moment(req.body.to_date).format('YYYY-MM-DD HH:mm:ss'),
+            moment(req.body.from_date).format('YYYY-MM-DD'),
+            moment(req.body.to_date).format('YYYY-MM-DD'),
         ],
         (err, rows) => {
             // TODO: predelat na vraceni chybove response
