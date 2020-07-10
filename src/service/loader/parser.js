@@ -45,7 +45,7 @@ export async function parseFile(fullPath, bytes,folder) {
                         break;
                     }
             break;
-            default:
+            default: resolve()
         }
         const readInterface = readline.createInterface({
             input: fs.createReadStream(fullPath),
