@@ -6,52 +6,55 @@ import {
     storeImportedFile,
 } from '../../repositories/importedFileRepository';
 
-export async function parseFile(fullPath, bytes) {
+export async function parseFile(fullPath, bytes,folder) {
     return new Promise(resolve => {
         const extension = path.extname(fullPath).split('.')[1].toLocaleLowerCase();
-        if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/aktual.txt') return resolve();
-        switch (extension) {
-            case 'met':
-                return resolve();
-                break;
-            case 'tst':
-                return resolve();
-                break;
-            case 'puv':
-                return resolve();
-                break;
-            case 'res':
-                return resolve();
-                break;
-            case 'err':
-                return resolve();
-                break;
-            case 'exe':
-                return resolve();
-                break;
-            case 'cfg':
-                return resolve();
-                break;
-            case 'dat':
-                return resolve();
-                break ;
-            case 'wvz':
-                return resolve();
-                break;
-            case 'old':
-                return resolve();
-                break;
-              
+        switch (folder) {
+            case 'METEOgopeARCHIV':
+                    if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/aktual.txt') return resolve();
+                    switch (extension) {
+                        case 'met':
+                            return resolve();
+                        break;
+                        case 'tst':
+                            return resolve();
+                        break;
+                        case 'puv':
+                            return resolve();
+                        break;
+                        case 'res':
+                            return resolve();
+                        break;
+                        case 'err':
+                            return resolve();
+                        break;
+                        case 'exe':
+                            return resolve();
+                        break;
+                        case 'cfg':
+                            return resolve();
+                        break;
+                        case 'dat':
+                            return resolve();
+                        break;
+                        case 'wvz':
+                            return resolve();
+                        break;
+                        case 'old':
+                            return resolve();
+                        break;
+                    }
+            break;
+            default:
         }
-
         const readInterface = readline.createInterface({
             input: fs.createReadStream(fullPath),
             console: false,
         });
 
-        const tableName = getTableName(extension);
+        const tableName = getTableName(folder, extension);
 
-        const numberOfRows = getNumberOfColumns(extension);
+        const numberOfRows = getNumberOfColumns(tableName);
         const parsedLines = [];
         let i = 0;
         
@@ -76,54 +79,58 @@ export async function parseFile(fullPath, bytes) {
 }
 
 //get table name
-function getTableName(extension) {
-    switch (extension) {
-        case 'all':
-            return 'all_table';
+function getTableName(folder,extension) {
+    switch (folder) {
+
+        case 'METEOgopeARCHIV':
+            switch (extension){
+                case 'all':
+                    return 'all_table';
+                break;
+                case 'txt':
+                    return 'txt_table';
+                break;
+                case 'mol':
+                    return 'mol_table';
+                break;
+                case 'bud':
+                    return 'bud_table';
+                break;
+                case 'vlh':
+                    return 'vlh_table';
+                break;
+                case 'vgl':
+                    return 'vgl_table';
+                break;
+                case 'bgl':
+                    return 'bgl_table';
+                break;
+            }
         break;
-        case 'txt':
-            return 'txt_table';
- break;
-        case 'mol':
-            return 'mol_table';
- break;
-        case 'bud':
-            return 'bud_table';
- break;
-        case 'vlh':
-            return 'vlh_table';
-            break;
-        case 'vgl':
-            return 'vgl_table';
-            break;
-        case 'bgl':
-            return 'bgl_table';
-            break;
     }
 }
-
 // get number of columns
-function getNumberOfColumns(extension) {
-    switch (extension) {
-        case 'all':
+function getNumberOfColumns(tableName) {
+    switch (tableName) {
+        case 'all_table':
             return 27;
  break;
-        case 'txt':
+        case 'txt_table':
             return 12;
  break;
-        case 'mol':
+        case 'mol_table':
             return 11;
  break;
-        case 'bud':
+        case 'bud_table':
             return 23;
  break;
-        case 'vlh':
+        case 'vlh_table':
             return 24;
              break;
-        case 'vgl':
+        case 'vgl_table':
             return 31;
             break;
-        case 'bgl':
+        case 'bgl_table':
             return 25;
             break;
     }

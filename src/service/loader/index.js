@@ -42,6 +42,6 @@ async function checkFile(folder, filename) {
     const row = await fetchSingleImportedFile(fullPathname);
     
     if (row === undefined || row.filesize < bytes) {
-        await parseFile(fullPathname, bytes);
+        await parseFile(fullPathname, bytes,folder);
     }
 }

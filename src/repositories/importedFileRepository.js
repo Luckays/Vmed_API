@@ -39,10 +39,10 @@ export async function storeImportedFile(fullPathname, bytes) {
 }
 //old saveToDB - save data to db
 export async function storeFileData(fullPath, tableName, parsedLines = []) {
-    const formattedRows = parsedLines.map((line) => [
+        const formattedRows = parsedLines.map((line) => [
         moment(line.date).format('YYYY-MM-DD HH:mm:ss'),
-        moment(line.day).format('L'),
-        moment(line.date).format('llll'),
+        moment(line.date).format('YYYY-MM-DD'),
+        moment(line.date).format('HH:mm:ss'),
         ...line.columns,
     ]);
 
