@@ -17,7 +17,7 @@ jobs:
                   key: ${{ secrets.PRIVATE_KEY }}
                   port: 22
                   script: |
-                      BASEDIR="/var/www/html/met/met_api2"
+                      BASEDIR="/var/www/html/met/met_api"
                       
                       if [ ! -d $BASEDIR ]; then
                           mkdir -p $BASEDIR;
