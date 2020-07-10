@@ -80,6 +80,7 @@ export async function parseFile(fullPath, bytes,folder) {
 
 //get table name
 function getTableName(folder,extension) {
+    console.log(folder)
     switch (folder) {
 
         case 'METEOgopeARCHIV':
