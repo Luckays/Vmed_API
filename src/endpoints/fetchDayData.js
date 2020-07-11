@@ -3,11 +3,11 @@ import { getConnection } from '../service/database';
 //send day data to graph
 export function fetchDayData(req, res) {
     getConnection().query(
-        'SELECT day_time,?? as sel_value FROM ?? WHERE date_day =? ORDER BY datum',
+        'SELECT day_time,?? as sel_value FROM ?? WHERE datum =?',
         [
             req.body.column,
             req.body.table_name,
-            moment(req.body.date).format('YYYY-MM-DD HH:mm:ss'),
+            moment(req.body.date).format('YYYY-MM-DD'),
         ],
         (err, rows, fields) => {
             // TODO: predelat na vraceni chybove response

@@ -5,11 +5,11 @@ import 'csv-express'
 //send day data to download
 export function fetchDayDataDownload(req, res) {
     getConnection().query(
-        'SELECT day_time,?? as sel_value FROM ?? WHERE date_day =? ORDER BY datum',
+        'SELECT day_time,?? as sel_value FROM ?? WHERE datum =?',
         [
             req.body.column,
             req.body.table_name,
-            moment(req.body.date).format('HH:mm:ss'),
+            moment(req.body.date).format('YYYY-MM-DD'),
         ],
         (err, rows) => {
             // TODO: predelat na vraceni chybove response
