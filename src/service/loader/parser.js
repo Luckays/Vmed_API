@@ -10,49 +10,50 @@ export async function parseFile(fullPath, bytes,folder) {
     return new Promise(resolve => {
         const extension = path.extname(fullPath).split('.')[1].toLocaleLowerCase();
         switch (folder) {
-         case '/nasdat/01/DATA/METEOgopeARCHIV':
-                    if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/aktual.txt') return resolve();
-              if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/CSV') return resolve();
-             if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/21810221.BGL') return resolve();
-             if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/20200720.VGL') return resolve();
-                    switch (extension) {
-                        case 'met':
-                            return resolve();
+            case '/nasdat/01/DATA/METEOgopeARCHIV':
+                if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/aktual.txt') return resolve();
+                if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/CSV') return resolve();
+                if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/21810221.BGL') return resolve();
+                if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/20200720.VGL') return resolve();
+                switch (extension) {
+                    case 'met':
+                        return resolve();
                         break;
-                        case 'tst':
-                            return resolve();
+                    case 'tst':
+                        return resolve();
                         break;
-                        case 'puv':
-                            return resolve();
+                    case 'puv':
+                        return resolve();
                         break;
-                        case 'res':
-                            return resolve();
+                    case 'res':
+                        return resolve();
                         break;
-                        case 'err':
-                            return resolve();
+                    case 'err':
+                        return resolve();
                         break;
-                        case 'exe':
-                            return resolve();
+                    case 'exe':
+                        return resolve();
                         break;
-                        case 'cfg':
-                            return resolve();
+                    case 'cfg':
+                        return resolve();
                         break;
-                        case 'dat':
-                            return resolve();
+                    case 'dat':
+                        return resolve();
                         break;
-                        case 'wvz':
-                            return resolve();
+                    case 'wvz':
+                        return resolve();
                         break;
-                        case 'old':
-                            return resolve();
+                    case 'old':
+                        return resolve();
                         break;
-                        case 'csv':
-                            return resolve();
-                            break;
-                    }
-         break;
-          default: resolve()
-       /}
+                    case 'csv':
+                        return resolve();
+                        break;
+                }
+                break;
+            default:
+                resolve()
+        }
         const readInterface = readline.createInterface({
             input: fs.createReadStream(fullPath),
             console: false,
