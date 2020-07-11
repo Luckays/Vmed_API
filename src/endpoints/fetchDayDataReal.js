@@ -3,7 +3,7 @@ import { getConnection } from '../service/database';
 //send day data to real time
 export function fetchDayDataReal(req, res) {
     getConnection().query(
-        'SELECT day_time,?? as sel_value FROM ?? WHERE datum >=?',
+        'SELECT day_time,?? as sel_value FROM ?? WHERE datum >=? ORDER BY datum',
         [
             req.body.column,
             req.body.table_name,

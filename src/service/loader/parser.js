@@ -11,7 +11,8 @@ export async function parseFile(fullPath, bytes,folder) {
         if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/CSV') return resolve();
         const extension = path.extname(fullPath).split('.')[1].toLocaleLowerCase();
         switch (folder) {
-            case '/nasdat/01/DATA/METEOgopeARCHIV':
+           case '/nasdat/01/DATA/METEOgopeARCHIV':
+           // case 'METEOgopeARCHIV':
                 if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/aktual.txt') return resolve();
                 if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/21810221.BGL') return resolve();
                 if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/20200720.VGL') return resolve();
@@ -91,6 +92,7 @@ function getTableName(folder,extension) {
     switch (folder) {
 
         case '/nasdat/01/DATA/METEOgopeARCHIV':
+        //case 'METEOgopeARCHIV':
             switch (extension){
                 case 'all':
                     return 'all_table';

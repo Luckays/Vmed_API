@@ -50,7 +50,7 @@ export function fetchData(req, res) {
     return sendData(
         req,
         res,
-        'SELECT datum,?? as sel_value FROM ?? WHERE datum >=? AND datum<=?'
+        'SELECT datum,?? as sel_value FROM ?? WHERE datum >=? AND datum<=? ORDER BY datum'
     );
 }
 //send long-term data to chart
@@ -62,35 +62,35 @@ export function fetchDataAnalysis(req, res) {
             return sendData(
                 req,
                 res,
-                'SELECT date_day,avg(??) as sel_value FROM ?? WHERE datum >=? AND datum<=? GROUP BY date_day'
+                'SELECT date_day,avg(??) as sel_value FROM ?? WHERE datum >=? AND datum<=? GROUP BY date_day ORDER BY datum'
             );
 
         case 'Součet':
             return sendData(
                 req,
                 res,
-                'SELECT date_day,sum(??) as sel_value FROM ?? WHERE datum >=? AND datum<=? GROUP BY date_day '
+                'SELECT date_day,sum(??) as sel_value FROM ?? WHERE datum >=? AND datum<=? GROUP BY date_day ORDER BY datum'
             );
 
         case 'Maximum':
             return sendData(
                 req,
                 res,
-                'SELECT date_day,max(??) as sel_value FROM ?? WHERE datum >=? AND datum<=? GROUP BY date_day '
+                'SELECT date_day,max(??) as sel_value FROM ?? WHERE datum >=? AND datum<=? GROUP BY date_day ORDER BY datum'
             );
 
         case 'Minimum':
             return sendData(
                 req,
                 res,
-                'SELECT date_day,min(??) as sel_value FROM ?? WHERE datum >=? AND datum<=? GROUP BY date_day '
+                'SELECT date_day,min(??) as sel_value FROM ?? WHERE datum >=? AND datum<=? GROUP BY date_day ORDER BY datum'
             );
 
         case 'Vše':
             return sendData(
                 req,
                 res,
-                'SELECT  day_time as date_day,?? as sel_value FROM ?? WHERE datum >=? AND datum<=?'
+                'SELECT  day_time as date_day,?? as sel_value FROM ?? WHERE datum >=? AND datum<=? ORDER BY datum'
             );
     }
 }
@@ -103,35 +103,35 @@ export function fetchDataDownload(req, res) {
             return sendDownloadData(
                 req,
                 res,
-                'SELECT date_day,avg(??) as sel_value FROM ?? WHERE datum >=? AND datum<=? GROUP BY date_day'
+                'SELECT date_day,avg(??) as sel_value FROM ?? WHERE datum >=? AND datum<=? GROUP BY date_day ORDER BY datum'
             );
 
         case 'Součet':
             return sendDownloadData(
                 req,
                 res,
-                'SELECT date_day,sum(??) as sel_value FROM ?? WHERE datum >=? AND datum<=? GROUP BY date_day '
+                'SELECT date_day,sum(??) as sel_value FROM ?? WHERE datum >=? AND datum<=? GROUP BY date_day ORDER BY datum'
             );
 
         case 'Maximum':
             return sendDownloadData(
                 req,
                 res,
-                'SELECT date_day,max(??) as sel_value FROM ?? WHERE datum >=? AND datum<=? GROUP BY date_day '
+                'SELECT date_day,max(??) as sel_value FROM ?? WHERE datum >=? AND datum<=? GROUP BY date_day ORDER BY datum'
             );
 
         case 'Minimum':
             return sendDownloadData(
                 req,
                 res,
-                'SELECT date_day,min(??) as sel_value FROM ?? WHERE datum >=? AND datum<=? GROUP BY date_day '
+                'SELECT date_day,min(??) as sel_value FROM ?? WHERE datum >=? AND datum<=? GROUP BY date_day ORDER BY datum'
             );
 
         case 'Vše':
             return sendDownloadData(
                 req,
                 res,
-                'SELECT day_time as date_day,?? as sel_value FROM ?? WHERE datum >=? AND datum<=?'
+                'SELECT day_time as date_day,?? as sel_value FROM ?? WHERE datum >=? AND datum<=? ORDER BY datum'
             );
     }
 }
