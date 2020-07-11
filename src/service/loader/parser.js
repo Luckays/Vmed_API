@@ -11,7 +11,7 @@ export async function parseFile(fullPath, bytes,folder) {
         const extension = path.extname(fullPath).split('.')[1].toLocaleLowerCase();
         console.log(fullPath);
         switch (folder) {
-            case '/nasdat/01/DATA/METEOgopeARCHIV/':
+          case '/nasdat/01/DATA/METEOgopeARCHIV':
                     if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/aktual.txt') return resolve();
                     switch (extension) {
                         case 'met':
@@ -45,8 +45,8 @@ export async function parseFile(fullPath, bytes,folder) {
                             return resolve();
                         break;
                     }
-            break;
-            default: resolve()
+          break;
+          default: resolve()
         }
         const readInterface = readline.createInterface({
             input: fs.createReadStream(fullPath),
