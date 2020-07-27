@@ -41,8 +41,7 @@ export async function storeImportedFile(fullPathname, bytes) {
 export async function storeFileData(fullPath, tableName, parsedLines = []) {
         const formattedRows = parsedLines.map((line) => [
             moment(line.date).format('YYYY-MM-DD HH:mm:ss'),
-            moment(line.date).format('YYYY-MM-DD HH:mm:ss'),
-            moment(line.date).format('LL'),
+            moment(line.date).format('YYYY-MM-DD'),
         moment(line.date).format('HH:mm:ss'),
         ...line.columns,
     ]);

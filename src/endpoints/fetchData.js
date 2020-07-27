@@ -62,28 +62,28 @@ export function fetchDataAnalysis(req, res) {
             return sendData(
                 req,
                 res,
-                'SELECT day_order as date_day,avg(??) as sel_value FROM ?? WHERE datum >=? AND datum<=? GROUP BY day_order ORDER BY day_order'
+                'SELECT date_day,avg(??) as sel_value FROM ?? WHERE datum >=? AND datum<=? GROUP BY date_day ORDER BY datum'
             );
 
         case 'Součet':
             return sendData(
                 req,
                 res,
-                'SELECT day_order,date_day,sum(??) as sel_value FROM ?? WHERE datum >=? AND datum<=? GROUP BY day_order ORDER BY day_order'
+                'SELECT date_day,sum(??) as sel_value FROM ?? WHERE datum >=? AND datum<=? GROUP BY date_day ORDER BY datum'
             );
 
         case 'Maximum':
             return sendData(
                 req,
                 res,
-                'SELECT day_order,date_day,max(??) as sel_value FROM ?? WHERE datum >=? AND datum<=? GROUP BY day_order ORDER BY day_order'
+                'SELECT date_day,max(??) as sel_value FROM ?? WHERE datum >=? AND datum<=? GROUP BY date_day ORDER BY datum'
             );
 
         case 'Minimum':
             return sendData(
                 req,
                 res,
-                'SELECT day_order, date_day,min(??) as sel_value FROM ?? WHERE datum >=? AND datum<=? GROUP BY day_order ORDER BY day_order'
+                'SELECT date_day,min(??) as sel_value FROM ?? WHERE datum >=? AND datum<=? GROUP BY date_day ORDER BY datum'
             );
 
         case 'Vše':
