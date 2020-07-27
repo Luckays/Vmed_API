@@ -7,7 +7,7 @@ export function fetchDayData(req, res) {
         [
             req.body.column,
             req.body.table_name,
-            moment(req.body.date).format('YYYY-MM-DD'),
+            moment(req.body.date).format('L'),
         ],
         (err, rows, fields) => {
             // TODO: predelat na vraceni chybove response
