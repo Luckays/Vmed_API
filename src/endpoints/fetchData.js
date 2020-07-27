@@ -62,7 +62,7 @@ export function fetchDataAnalysis(req, res) {
             return sendData(
                 req,
                 res,
-                'SELECT day_order, date_day,avg(??) as sel_value FROM ?? WHERE datum >=? AND datum<=? GROUP BY day_order ORDER BY day_order'
+                'SELECT day_order as date_day,avg(??) as sel_value FROM ?? WHERE datum >=? AND datum<=? GROUP BY day_order ORDER BY day_order'
             );
 
         case 'Součet':

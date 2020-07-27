@@ -25,7 +25,6 @@ export function fetchSelectableColumns(req, res) {
                         (c) =>
                             c !== 'datum' &&
                             c !== 'date_day' &&
-                            c !== 'day_time' &&
                             c !== 'day_order'
                     ),
             });
