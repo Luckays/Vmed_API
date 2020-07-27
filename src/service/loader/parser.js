@@ -90,8 +90,7 @@ export async function parseFile(fullPath, bytes,folder) {
 function getTableName(folder,extension) {
 
     switch (folder) {
-
-    case '/nasdat/01/DATA/METEOgopeARCHIV':
+       case '/nasdat/01/DATA/METEOgopeARCHIV':
        //case 'METEOgopeARCHIV': //test
             switch (extension){
                 case 'all':
