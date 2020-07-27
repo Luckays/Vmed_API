@@ -22,11 +22,11 @@ export function fetchSelectableColumns(req, res) {
                 data: rows
                     .map((c) => c.Field)
                     .filter(
-                        (c) => (
+                        (c) =>
                             c !== 'datum' &&
+                            c !== 'dday' &&
                             c !== 'date_day' &&
-                            c !== 'day_time' &&
-                            c !== 'dday')
+                            c !== 'day_time'
                     ),
             });
     });
