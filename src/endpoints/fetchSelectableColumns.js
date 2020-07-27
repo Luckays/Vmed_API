@@ -21,12 +21,7 @@ export function fetchSelectableColumns(req, res) {
             .json({
                 data: rows
                     .map((c) => c.Field)
-                    .filter(
-                        (c) =>
-                            c !== 'datum' &&
-                            c !== 'date_day' &&
-                            c !== 'day_order'
-                    ),
+
             });
     });
 }
