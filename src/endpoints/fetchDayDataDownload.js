@@ -9,7 +9,7 @@ export function fetchDayDataDownload(req, res) {
         [
             req.body.column,
             req.body.table_name,
-            moment(req.body.date).format('L'),
+            moment(req.body.date).format('YYYY-MM-DD'),
         ],
         (err, rows) => {
             // TODO: predelat na vraceni chybove response
