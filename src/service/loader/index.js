@@ -27,8 +27,8 @@ async function checkFolder(folder, excluded = []) {
         if (excluded.indexOf(filename) !== -1) continue;
         
         await checkFile(folder, filename); 
-        readline.clearLine(process.stdout, 0);
-        readline.cursorTo(process.stdout, 0);
+        //readline.clearLine(process.stdout, 0);
+        //readline.cursorTo(process.stdout, 0);
        // process.stdout.write(`📸📸 Checked V_3 ${count - filenames.length}/${count} files from ${folder} Checking ${filename}  `);
     }
 
