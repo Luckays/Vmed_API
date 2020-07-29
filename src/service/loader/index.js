@@ -27,12 +27,12 @@ async function checkFolder(folder, excluded = []) {
         if (excluded.indexOf(filename) !== -1) continue;
         
         await checkFile(folder, filename); 
-        //readline.clearLine(process.stdout, 0);
-        //readline.cursorTo(process.stdout, 0);
-       // process.stdout.write(`📸📸 Checked V_3 ${count - filenames.length}/${count} files from ${folder} Checking ${filename}  `);
+        readline.clearLine(process.stdout, 0);
+        readline.cursorTo(process.stdout, 0);
+        process.stdout.write(`📸📸 Checked V_3 ${count - filenames.length}/${count} files from ${folder} Checking ${filename}  `);
     }
 
-  //  process.stdout.write('\n');
+    process.stdout.write('\n');
 }
 
 //- check if is in folder new file or some file change size
