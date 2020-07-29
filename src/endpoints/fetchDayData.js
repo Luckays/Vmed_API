@@ -2,6 +2,7 @@ import moment from 'moment';
 import { getConnection } from '../service/database';
 //send day data to graph
 export function fetchDayData(req, res) {
+    console.log( moment(req.body.date).format('YYYY-MM-DD'))
     getConnection().query(
         'SELECT day_time,?? as sel_value FROM ?? WHERE date_day =?',
         [
@@ -18,5 +19,6 @@ export function fetchDayData(req, res) {
                 'Access-Control-Allow-Origin': '*',
             }).send(rows);
         }
+
     );
 }

@@ -20,7 +20,7 @@ async function wait(ms) {
 async function checkFolder(folder, excluded = []) {
     const filenames = fs.readdirSync(folder);
     const count = filenames.length;
-    console.log(`📸 I am checking folder ${folder}, ${count} files`);
+    //console.log(`📸 I am checking folder ${folder}, ${count} files`);
     
     while (filenames.length > 0) {
         const filename = filenames.shift(); 
@@ -29,10 +29,10 @@ async function checkFolder(folder, excluded = []) {
         await checkFile(folder, filename); 
         readline.clearLine(process.stdout, 0);
         readline.cursorTo(process.stdout, 0);
-        process.stdout.write(`📸📸 Checked V_3 ${count - filenames.length}/${count} files from ${folder} Checking ${filename}  `);
+       // process.stdout.write(`📸📸 Checked V_3 ${count - filenames.length}/${count} files from ${folder} Checking ${filename}  `);
     }
 
-    process.stdout.write('\n');
+  //  process.stdout.write('\n');
 }
 
 //- check if is in folder new file or some file change size
