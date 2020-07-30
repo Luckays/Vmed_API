@@ -31,7 +31,7 @@ export function runMigrations() {
         'CREATE TABLE IF NOT EXISTS plzen_all_table ( datum timestamp PRIMARY KEY NOT NULL,dday varchar(255),date_day varchar(255),day_time varchar(255) ,uhrn_srazek double,vlhkost_pudy_25cm double,vlhkost_pudy_61cm double,vlhkost_pudy_95cm double,vlhkost_pudy_123cm double)';
     connection.query(sql);
     var sql =
-        'CREATE TABLE IF NOT EXISTS plzen_txt_table ( datum timestamp PRIMARY KEY NOT NULL,dday varchar(255),date_day varchar(255),day_time varchar(255) ,uhrn_srazek double,teplota double,vlhkost double,tlak double,cteni_teploty double,cteni_vlhkosti double,cteni_tlaku double)';
+        'CREATE TABLE IF NOT EXISTS plzen_txt_table ( datum timestamp PRIMARY KEY NOT NULL,dday varchar(255),date_day varchar(255),day_time varchar(255) ,teplota double,vlhkost double,tlak double,cteni_teploty double,cteni_vlhkosti double,cteni_tlaku double)';
     connection.query(sql);
     var sql =
         'CREATE TABLE IF NOT EXISTS polom_all_table ( datum timestamp PRIMARY KEY NOT NULL,dday varchar(255),date_day varchar(255),day_time varchar(255) ,teplota double,vlhkost double,tlak double,vlhkost_pudy_13cm double,vlhkost_pudy_52cm double,vlhkost_pudy_92cm double,nadmorska_vyska_hladiny_ve_studni double,hloubka_vody_ve_studni double)';
@@ -52,7 +52,7 @@ export function runMigrations() {
     var sql =
         'CREATE TABLE IF NOT EXISTS selectable_tables ( name_table varchar(255)PRIMARY KEY NOT NULL, title varchar (255))';
     connection.query(sql);
-    var sql = `INSERT IGNORE INTO selectable_tables VALUES ('vgl_table','Vlhkosti půdy u gravimetrické laboratoře'),('bgl_table','Čidla v gravimetrické laboratoři'),('all_table','Minutová data'),('bud_table','Čidla v budově'),('txt_table','Základní meteo'),('vlh_table','Vlhkosti půdy'),('mol_table','Historická meteodata'),('rinex_table','RINEX'),('plzen_all_table','Stanice Plzeň - vlhkosti půdy'),('plzen_txt_table','Stanice Plzeň - základní meto'),('olomouc_all_table','Stanice Olomouc'),('brno_all_table','Stanice Brno'),('polom_all_table','Stanice Polom'),('kunzak_all_table','Stanice Kunžak')`;
+    var sql = `INSERT IGNORE INTO selectable_tables VALUES ('vgl_table','Vlhkosti půdy u gravimetrické laboratoře'),('bgl_table','Čidla v gravimetrické laboratoři'),('all_table','Minutová data'),('bud_table','Čidla v budově'),('txt_table','Základní meteo'),('vlh_table','Vlhkosti půdy'),('mol_table','Historická meteodata'),('rinex_table','RINEX'),('plzen_all_table','Stanice Plzeň - vlhkosti půdy'),('plzen_txt_table','Stanice Plzeň - základní meto'),('olomouc_all_table','Stanice Olomouc'),('brno_all_table','Stanice Brno'),('polom_all_table','Stanice Polom'),('kunzak_all_table','Stanice Kunžak'),('strava_rinex_table','Stanice Ostrava')`;
     connection.query(sql);
 
 }
