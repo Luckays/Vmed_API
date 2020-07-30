@@ -7,5 +7,5 @@ import { invokeConnection } from './src/service/database';
     config();
     await invokeConnection(); 
     createServer(4840);
-    watchFolders(process.env.FOLDERS.split(','), process.env.EXCLUDED.split(','), 5 * 1000);
-})();
+        watchFolders(process.env.FOLDERS.split(','), process.env.EXCLUDED.split(','),process.env.RINEX.split(','), 5 * 1000);
+    })();

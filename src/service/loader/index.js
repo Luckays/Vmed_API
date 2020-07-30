@@ -2,11 +2,14 @@ import fs from 'fs';
 import readline from 'readline';
 import { fetchSingleImportedFile } from '../../repositories/importedFileRepository';
 import { parseFile } from './parser';
+import { checkRinex} from './indexRinex';
 
 //old function like openFolder - first upload all files, then set refresh interval
-export async function watchFolders(folders = [], excluded = [], interval) {
+export async function watchFolders(folders = [], excluded = [],rinexFolders = [], interval) {
     do {
         await Promise.all(folders.map(folder => checkFolder(folder, excluded)));
+        await wait(interval)
+        await Promise.all(rinexFolders.map(rinexFolder => checkRinex(rinexFolder)));
         await wait(interval)
     } while (true);
 }

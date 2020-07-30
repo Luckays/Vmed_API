@@ -9,6 +9,10 @@ import {
 export async function parseFile(fullPath, bytes,folder) {
     return new Promise(resolve => {
         if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/CSV') return resolve();
+        if (fullPath === '/nasdat/01/DATA/METEOkunzARCHIV/StaryFormat') return resolve();
+        if (fullPath === '/nasdat/01/DATA/METEOkunzARCHIV/Spurny') return resolve();
+        if (fullPath === '/nasdat/01/DATA/METEOplznARCHIV/spatne') return resolve();
+        if (fullPath === '/nasdat/01/DATA/METEOvsboARCHIV') return resolve();
         const extension = path.extname(fullPath).split('.')[1].toLocaleLowerCase();
         switch (folder) {
            case '/nasdat/01/DATA/METEOgopeARCHIV':
@@ -87,10 +91,10 @@ export async function parseFile(fullPath, bytes,folder) {
 }
 
 //get table name
-function getTableName(folder,extension) {
+export function getTableName(folder,extension) {
 
     switch (folder) {
-       case '/nasdat/01/DATA/METEOgopeARCHIV':
+      case '/nasdat/01/DATA/METEOgopeARCHIV':
        //case 'METEOgopeARCHIV': //test
             switch (extension){
                 case 'all':
@@ -115,6 +119,32 @@ function getTableName(folder,extension) {
                     return 'bgl_table';
                 break;
             }
+            break;
+        case '/nasdat/01/DATA/METEOkunzARCHIV':
+                return 'kunzak_all_table';
+        break
+        case '/nasdat/01/DATA/METEOtuboARCHIV':
+            return 'brno_all_table';
+            break
+        case '/nasdat/01/DATA/METEOupolARCHIV':
+            return 'olomouc_all_table';
+            break
+        case '/nasdat/01/DATA/METEOpol1ARCHIV':
+            return 'polom_all_table';
+            break
+        case '/nasdat/01/DATA/METEOvsboARCHIV':
+                return 'ostrava_rinex_table';
+            break;
+        case '/nasdat/01/DATA/METEOplznARCHIV':
+            switch (extension) {
+                case 'all':
+                    return 'plzen_all_table';
+                    break;
+                case 'txt':
+                    return 'plzen_txt_table';
+                    break;
+
+            }
         break;
     }
 }
@@ -127,11 +157,11 @@ function getNumberOfColumns(tableName) {
         case 'txt_table':
             return 12;
  break;
-        case 'mol_table':
-            return 11;
+        case 'olomouc_all_table':
+            return 14;
  break;
-        case 'bud_table':
-            return 23;
+        case 'polom_all_table':
+            return 14;
  break;
         case 'vlh_table':
             return 24;
@@ -141,6 +171,25 @@ function getNumberOfColumns(tableName) {
             break;
         case 'bgl_table':
             return 25;
+            break;
+
+        case 'kunzak_all_table':
+            return 17;
+            break;
+        case 'brno_all_table':
+            return 10;
+            break;
+        case 'mol_table':
+            return 11;
+            break;
+        case 'bud_table':
+            return 23;
+            break;
+        case 'plzen_all_table':
+            return 11;
+            break;
+        case 'plzen_txt_table':
+            return 12;
             break;
     }
 }
@@ -152,6 +201,7 @@ function parse(line = [], numberOfRows) {
         day: new Date(),
         columns: [],
     };
+    if(line[0]===-1) return;
 
     definition.date.setFullYear(line[0], line[1] - 1, line[2]);
     definition.day.setFullYear(line[0], line[1] - 1, line[2]);
