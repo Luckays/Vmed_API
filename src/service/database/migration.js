@@ -52,7 +52,7 @@ export function runMigrations() {
     var sql =
         'CREATE TABLE IF NOT EXISTS selectable_tables ( name_table varchar(255)PRIMARY KEY NOT NULL, title varchar (255))';
     connection.query(sql);
-    var sql = `INSERT IGNORE INTO selectable_tables VALUES ('vgl_table','Vlhkosti půdy u gravimetrické laboratoře'),('bgl_table','Čidla v gravimetrické laboratoři'),('all_table','Minutová data'),('bud_table','Čidla v budově'),('txt_table','Základní meteo'),('vlh_table','Vlhkosti půdy'),('mol_table','Historická meteodata'),('plzen_all_table','Stanice Plzeň - vlhkosti půdy'),('plzen_txt_table','Stanice Plzeň - základní meto'),('olomouc_all_table','Stanice Olomouc'),('brno_all_table','Stanice Brno'),('polom_all_table','Stanice Polom'),('kunzak_all_table','Stanice Kunžak'),('strava_rinex_table','Stanice Ostrava')`;
+    var sql = `INSERT IGNORE INTO selectable_tables VALUES ('vgl_table','Vlhkosti půdy u gravimetrické laboratoře'),('bgl_table','Čidla v gravimetrické laboratoři'),('all_table','Minutová data'),('bud_table','Čidla v budově'),('txt_table','Základní meteo'),('vlh_table','Vlhkosti půdy'),('mol_table','Historická meteodata'),('plzen_all_table','Stanice Plzeň - vlhkosti půdy'),('plzen_txt_table','Stanice Plzeň - základní meto'),('olomouc_all_table','Stanice Olomouc'),('brno_all_table','Stanice Brno'),('polom_all_table','Stanice Polom'),('kunzak_all_table','Stanice Kunžak'),('ostrava_rinex_table','Stanice Ostrava')`;
     connection.query(sql);
 
 }

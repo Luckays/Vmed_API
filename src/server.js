@@ -10,7 +10,9 @@ import {
     fetchData,
     fetchDataAnalysis,
     fetchDataDownload,
-} from './endpoints/fetchData'; 
+} from './endpoints/fetchData';
+import {fetchDayDataActual} from './endpoints/fetchDayDataActual';
+
 //old getFromDB - communication with server
 export function createServer(port) {
     const app = express();
@@ -25,6 +27,7 @@ export function createServer(port) {
     app.post('/columns', fetchSelectableColumns);
     app.post('/show_data_day', fetchDayData);
     app.post('/show_data_day_real', fetchDayDataReal);
+    app.post('/show_data_day_actual', fetchDayDataActual);
     app.post('/download_day', fetchDayDataDownload);
 
     app.listen(port); 
