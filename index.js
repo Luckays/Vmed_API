@@ -2,8 +2,7 @@ import { config } from 'dotenv';
 import { createServer } from './src/server';
 import { watchFolders } from './src/service/loader';
 import { invokeConnection } from './src/service/database';
-import * as Sentry from '@sentry/node'
-Sentry.init({ dsn: 'https://cc89270695804a59be08db183c9b938d@o428131.ingest.sentry.io/5373154' });
+
 
 (async function () {
     config();
