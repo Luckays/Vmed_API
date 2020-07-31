@@ -1,11 +1,13 @@
 import moment from 'moment';
 import { getConnection } from '../service/database';
 //send day data to real time
-export function fetchDayDataActual(req, res) {
+export function fetchDayDataVar(req, res) {
     getConnection().query(
-        'SELECT day_time,?? as sel_value FROM ?? WHERE date_day=(SELECT MAX(date_day) FROM ??);',
+        'SELECT datum,?? as teplota, ?? as tlak, ?? as vlhkost FROM ?? WHERE datum=(SELECT MAX(datum) FROM ??);',
         [
-            req.body.column,
+            req.body.column_teplota,
+            req.body.column_tlak,
+            req.body.column_vlhkost,
             req.body.table_name,
             req.body.table_name,
             moment(req.body.date).format('YYYY-MM-DD HH:mm:ss'),
@@ -21,4 +23,3 @@ export function fetchDayDataActual(req, res) {
         }
     );
 }
-

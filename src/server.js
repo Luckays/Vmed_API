@@ -12,6 +12,7 @@ import {
     fetchDataDownload,
 } from './endpoints/fetchData';
 import {fetchDayDataActual} from './endpoints/fetchDayDataActual';
+import {fetchDayDataVar} from './endpoints/fetchDayDataVar';
 
 //old getFromDB - communication with server
 export function createServer(port) {
@@ -28,6 +29,7 @@ export function createServer(port) {
     app.post('/show_data_day', fetchDayData);
     app.post('/show_data_day_real', fetchDayDataReal);
     app.post('/show_data_day_actual', fetchDayDataActual);
+    app.post('/show_data_day_var', fetchDayDataVar);
     app.post('/download_day', fetchDayDataDownload);
 
     app.listen(port); 
