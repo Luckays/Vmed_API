@@ -2,6 +2,7 @@
     "name": "realtimesql",
     "version": "1.0.0",
     "dependencies": {
+        "@sentry/node": "^5.20.1",
         "body-parser": "^1.19.0",
         "cors": "^2.8.5",
         "csv-express": "^1.2.2",
@@ -29,10 +30,10 @@
         "sexy-code": "prettier . --write",
         "docker:dev:up": "docker-compose build app && docker-compose up",
         "docker:dev:start": "docker-compose exec app npm run start"
-    }, 
+    },
     "prettier": {
         "tabWidth": 4,
-        "singleQuote": true, 
+        "singleQuote": true,
         "semi": true
     }
 }
