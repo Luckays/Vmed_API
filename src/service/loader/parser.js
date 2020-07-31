@@ -131,7 +131,7 @@ export function getTableName(folder,extension) {
         case '/nasdat/01/DATA/METEOpol1ARCHIV':
             return 'polom_all_table';
             break
-        case '/nasdat/01/DATA/METEOvsboARCHIV':
+       case '/nasdat/01/DATA/METEOvsboARCHIV':
                 return 'ostrava_rinex_table';
             break;
         case '/nasdat/01/DATA/METEOplznARCHIV':

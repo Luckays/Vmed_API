@@ -103,6 +103,9 @@ function parse(line = [], numberOfRows) {
         date: new Date(),
         columns: [],
     };
+    if (line[0]<100){
+        line[0]=Number(line[0])+2000;
+    }
 
     definition.date.setFullYear(line[0], line[1] - 1, line[2]);
     definition.date.setHours(line[3], line[4], line[5]);
@@ -142,8 +145,6 @@ export async function storeFileData (parsedLines,tableName,pr,td,hr,zw,zd,zt,wd,
         line.columns[ri],
         line.columns[hi]
     ]);
-
-    console.log(formattedRows)
 
     return new Promise((resolve) => {
         if (formattedRows.length === 0) {
