@@ -58,6 +58,6 @@ jobs:
                       ln -s "releases/$NEXT" current
                       cd current
                       
-                      sudo npm run stop
+
                       sudo npm run start:prod
  
