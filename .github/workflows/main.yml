@@ -56,7 +56,7 @@ jobs:
                         fi
                       fi
                       ln -s "releases/$NEXT" current
-                      ln -s "shared/.env" current/.env
+                      ln -s "../shared/.env" current/.env
                         cd current
 
                       sudo npm run start:prod
