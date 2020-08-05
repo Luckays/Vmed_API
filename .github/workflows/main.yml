@@ -58,6 +58,6 @@ jobs:
                               ln -s "releases/$NEXT" current
                               ln -s "$BASEDIR/shared/.env" current/.env
                                 cd current
-
+                              sudo npm run build
                               sudo npm run start:prod
  

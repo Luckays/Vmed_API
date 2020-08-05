@@ -1,7 +1,7 @@
 import { config } from 'dotenv';
-import { createServer } from './src/server';
-import { watchFolders } from './src/service/loader';
-import { invokeConnection } from './src/service/database';
+import { createServer } from './server';
+import { watchFolders } from './service/loader';
+import { invokeConnection } from './service/database';
 
 
 (async function () {
