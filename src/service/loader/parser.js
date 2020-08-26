@@ -6,6 +6,7 @@ import {
     storeImportedFile,
 } from '../../repositories/importedFileRepository';
 
+
 export async function parseFile(fullPath, bytes,folder) {
     return new Promise(resolve => {
         if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/CSV') return resolve();
@@ -13,7 +14,9 @@ export async function parseFile(fullPath, bytes,folder) {
         if (fullPath === '/nasdat/01/DATA/METEOkunzARCHIV/Spurny') return resolve();
         if (fullPath === '/nasdat/01/DATA/METEOplznARCHIV/spatne') return resolve();
         const extension = path.extname(fullPath).split('.')[1].toLocaleLowerCase();
+
         switch (folder) {
+
            case '/nasdat/01/DATA/METEOgopeARCHIV':
            //case 'METEOgopeARCHIV': //test
                 if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/aktual.txt') return resolve();
@@ -67,6 +70,7 @@ export async function parseFile(fullPath, bytes,folder) {
 
         const numberOfRows = getNumberOfColumns(tableName);
         const parsedLines = [];
+
         let i = 0;
         
         readInterface.on('line', (line) => {
@@ -94,7 +98,7 @@ export function getTableName(folder,extension) {
 
     switch (folder) {
       case '/nasdat/01/DATA/METEOgopeARCHIV':
-       //case 'METEOgopeARCHIV': //test
+      // case 'METEOgopeARCHIV': //test
             switch (extension){
                 case 'all':
                     return 'all_table';
@@ -148,7 +152,7 @@ export function getTableName(folder,extension) {
     }
 }
 // get number of columns
-function getNumberOfColumns(tableName) {
+export function getNumberOfColumns(tableName) {
     switch (tableName) {
         case 'all_table':
             return 27;
@@ -190,11 +194,14 @@ function getNumberOfColumns(tableName) {
         case 'plzen_txt_table':
             return 12;
             break;
+        case 'ostrava_rinex_table':
+            return 15;
+            break;
     }
 }
 
 //old columns - split data assign
-function parse(line = [], numberOfRows) {
+export function parse(line = [], numberOfRows) {
     const definition = {
         date: new Date(),
         day: new Date(),

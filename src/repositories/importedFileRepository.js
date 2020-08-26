@@ -53,6 +53,7 @@ export async function storeFileData(fullPath, tableName, parsedLines = []) {
         }
         
         const query = `INSERT IGNORE INTO ${tableName} VALUES ? `;
+
         getConnection().query(query, [formattedRows], function (err, result) {
             if (err) throw err;
             console.log('Number of records inserted: ' + result.affectedRows);
