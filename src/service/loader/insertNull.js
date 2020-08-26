@@ -8,7 +8,7 @@ import {getNumberOfColumns} from './parser';
      let tableName = ['all_table', 'txt_table', 'olomouc_all_table', 'ostrava_rinex_table','polom_all_table', 'vlh_table', 'vgl_table', 'bgl_table', 'kunzak_all_table', 'brno_all_table', 'mol_table', 'bud_table', 'plzen_all_table', 'plzen_txt_table']
 
      for (let k = 0; k < tableName.length; k++) {
-         let startDate = new Date(2000, 1, 1, 24);
+         let startDate = date.setDate(date.getDate() - 8)
          let date = new Date();
          let stopDate = date.setDate(date.getDate() - 7)
          let nullFormat = getDates(startDate, stopDate)
