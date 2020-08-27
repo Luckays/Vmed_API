@@ -10,10 +10,13 @@ import { addNull } from './service/loader/insertNull';
     await invokeConnection();
     console.log("ahoj")
     createServer(4840);
-   watchFolders(process.env.FOLDERS.split(','), process.env.EXCLUDED.split(','),process.env.RINEX.split(','), 5 * 1000);
+    watchFolders(process.env.FOLDERS.split(','), process.env.EXCLUDED.split(','),process.env.RINEX.split(','), 5 * 1000);
+
     let day = 1, the_interval = day *24*60* 60 * 1000;
+    let date = new Date();
+    addNull(new Date(2000,1,1,24))
     setInterval(function () {
-        addNull()
+        addNull(date.setDate(date.getDate() - 8))
     }, the_interval)
 
 
