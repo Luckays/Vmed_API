@@ -54,7 +54,7 @@ jobs:
                                 if [ -e current ] ; then
                                     rm current;
                                 fi
-                              fi
+                              fi 
                               ln -s "releases/$NEXT" current
                               ln -s "$BASEDIR/shared/.env" current/.env
                                 cd current
