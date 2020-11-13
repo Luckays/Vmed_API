@@ -13,6 +13,8 @@ export async function parseFile(fullPath, bytes,folder) {
         if (fullPath === '/nasdat/01/DATA/METEOkunzARCHIV/StaryFormat') return resolve();
         if (fullPath === '/nasdat/01/DATA/METEOkunzARCHIV/Spurny') return resolve();
         if (fullPath === '/nasdat/01/DATA/METEOplznARCHIV/spatne') return resolve();
+        if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/02668DIR') return resolve();
+        console.log(fullPath)
         const extension = path.extname(fullPath).split('.')[1].toLocaleLowerCase();
 
         switch (folder) {
@@ -22,7 +24,7 @@ export async function parseFile(fullPath, bytes,folder) {
                 if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/aktual.txt') return resolve();
                 if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/21810221.BGL') return resolve();
                 if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/20200720.VGL') return resolve();
-               if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/02668DIR') return resolve();
+
                 switch (extension) {
                     case 'met':
                         return resolve();
