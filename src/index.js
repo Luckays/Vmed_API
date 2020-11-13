@@ -4,6 +4,7 @@ import { watchFolders } from './service/loader';
 import { invokeConnection } from './service/database';
 import { addNull } from './service/loader/insertNull';
 
+//index
 
 (async function () {
     config();

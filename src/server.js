@@ -14,6 +14,7 @@ import {
 import {fetchDayDataActual} from './endpoints/fetchDayDataActual';
 import {fetchDayDataVar} from './endpoints/fetchDayDataVar';
 
+
 //old getFromDB - communication with server
 export function createServer(port) {
     const app = express();

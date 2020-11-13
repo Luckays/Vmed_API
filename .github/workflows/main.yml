@@ -54,10 +54,10 @@ jobs:
                                 if [ -e current ] ; then
                                     rm current;
                                 fi
-                              fi
+                              fi 
                               ln -s "releases/$NEXT" current
                               ln -s "$BASEDIR/shared/.env" current/.env
                                 cd current
-                              sudo npm run stop
-                              sudo npm run start:prod
+                                npm run stop
+                                npm run start:prod
 
