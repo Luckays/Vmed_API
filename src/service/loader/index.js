@@ -9,7 +9,7 @@ import { addNull } from './insertNull';
 export async function watchFolders(folders = [], excluded = [],rinexFolders = [], interval) {
     do {
         await Promise.all(folders.map(folder => checkFolder(folder, excluded)));
-        await Promise.all(rinexFolders.map(rinexFolder => checkRinex(rinexFolder)));
+       // await Promise.all(rinexFolders.map(rinexFolder => checkRinex(rinexFolder)));
 
         await wait(interval)
     } while (true);
