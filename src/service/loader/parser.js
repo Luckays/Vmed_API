@@ -14,6 +14,7 @@ export async function parseFile(fullPath, bytes,folder) {
         if (fullPath === '/nasdat/01/DATA/METEOkunzARCHIV/Spurny') return resolve();
         if (fullPath === '/nasdat/01/DATA/METEOplznARCHIV/spatne') return resolve();
         if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/03628DIR') return resolve();
+        if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/04348DIR') return resolve();
         console.log(fullPath)
         const extension = path.extname(fullPath).split('.')[1].toLocaleLowerCase();
 
