@@ -24,7 +24,10 @@ export async function parseFile(fullPath, bytes,folder) {
            //case 'METEOgopeARCHIV': //test
                 if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/aktual.txt') return resolve();
                 if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/21810221.BGL') return resolve();
+                if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/20210214.BGL') return resolve();
                 if (fullPath === '/nasdat/01/DATA/METEOgopeARCHIV/20200720.VGL') return resolve();
+
+
 
                 switch (extension) {
                     case 'met':
