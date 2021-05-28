@@ -24,7 +24,7 @@ async function wait(ms) {
 async function checkFolder(folder, excluded = []) {
     const filenames = fs.readdirSync(folder);
     const count = filenames.length;
-    //console.log(`📸 I am checking folder ${folder}, ${count} files`);
+    console.log(`📸 I am checking folder ${folder}, ${count} files`);
     
     while (filenames.length > 0) {
         const filename = filenames.shift(); 
