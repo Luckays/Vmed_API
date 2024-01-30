@@ -63,6 +63,9 @@ export async function parseFile(fullPath, bytes,folder) {
                     case 'csv':
                         return resolve();
                         break;
+                    case 'bgl':
+                        return resolve();
+                        break;
                 }
                 break;
             default:
